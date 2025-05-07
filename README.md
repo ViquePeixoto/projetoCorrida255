@@ -1,4 +1,3 @@
 # projetoIndividual
-O repositório principal para o projeto individual feito para a SPTech.
-
-As bibliotecas/APIs preferíveis no momento são o 'three.js' (que requer uma instalação completa) ou o 'model-viewer' (que pode ser implantado mais facilmente.)
+O repositório do projeto "Corrida 66", criado e desenvolvido pela Vique Peixoto.
+Aqui, você irá encontrar uma plataforma para conhecer a competição e poder participar da corrida contra outros corredores. Cadastre-se e verifique o seu progresso na corrida ou acompanhe os outros ingressantes na corrida que também estão usando essa plataforma!
