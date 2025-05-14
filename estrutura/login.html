@@ -40,24 +40,36 @@
             </div>
         </div>
 
-        <div class="containerPlayer">
-            <div class="musicaInfo">
+        <div class="containerPlayer"> <!--Corpo do player de música.-->
+            <div class="musicaInfo"> <!--Informações da música sendo tocada.-->
                 <h4 id="titulo">Teste</h4>
-                <div class="containerProgresso">
-                    <div class="progresso">
+                <div class="containerProgresso"> <!--Corpo para mostrar o progresso da música.-->
+                    <div class="progresso"> <!--Barra de progresso.-->
+                    
                     </div>
                 </div>
             </div>
 
             <audio src="./assets/musicPlayer/musicas/boaNoiteSP.mp3" id="musica"></audio>
             <div class="containerImagem">
-                <img src="./assets/musicPlayer/capas/boaNoiteSP.jpg" alt="capaDeAlbum" id="capa">
+                <img class="capas" src="./assets/musicPlayer/capas/boaNoiteSP.jpg" alt="capaDeAlbum" id="capa" 
+                >
             </div>
 
-            <div class="navegador">
-                <button id="anterior" class="actionBTN"></button>
-                i.fas.fa-backward
+            <div class="navegador"> <!--Configurações do navegador do player.-->
+                <button id="musicaAnterior" class="botaoPlayer">
+                <i class="fas fa-backward"></i>
+                </button>
+
+                <button id="musicaPausar" class="botaoPlayer botaoPlayerMaior" >
+                <i class="fas fa-play"></i>
+                </button>
+
+                <button id="musicaProxima" class="botaoPlayer">
+                <i class="fas fa-forward"></i>
+                </button>
             </div>
+
         </div>
 
     </div>
