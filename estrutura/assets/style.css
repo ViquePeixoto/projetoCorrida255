@@ -24,8 +24,21 @@
 }
 
 .containerImagem {
+    display: flex;
     position: relative;
     width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    object-fit: cover;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+
+    animation: rotate 3s linear infinite;
+    animation-play-state: paused;
+    border-radius: 50%;
+    background-image: url('../assets/musicPlayer/capas/boaNoiteSP.jpg');
+    background-size: cover;
 }
 
 .containerImagem::after {
@@ -38,9 +51,11 @@
     bottom: 50%;
     border-radius: 50%;
     transform: translate(-50%, -50%);
+
 }
 
 .capas img {
+    position: absolute;
     width: inherit;
     height: 110px;
     border-radius: 50%;
@@ -51,9 +66,9 @@
 
     animation: rotate 3s linear infinite;
     animation-play-state: paused;
-}
+} 
 
-.containerPlayer.play .containerImagem img {
+.containerImagem img {
     animation-play-state: running;
 }
 
