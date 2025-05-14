@@ -3,12 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
 
     <script src="./scripts/cadastro.js"></script>
-    <link rel="stylesheet" href="./assets/style.css">
-    <title>ColaJunto</title>
-</head>
-<body>
     
+    <link rel="stylesheet" href="./assets/style.css">
+    
+    <title>ColaJunto | Cadastro</title>
+</head>
+
+<body>
+    <div class="corpo"> <!--Corpo do site, separado da tag body.-->
+        <div class="navbar"> <!--Navbar lateral, simulando a barra de tarefa do Ubuntu com os hrefs de navegação para outras páginas.-->
+            <div class="navbar itens"> <!--Separador dos itens da navbar.-->
+                <li> <a href="./index.html">Home</a> </li>
+                <li> <a href="./cadastro.html">Cadastre-se</a> </li>
+                <li> <a href="./login.html">Login</a> </li>
+            </div>
+        </div>
+
+        <div class="formulario"> <!--Formulário de cadastro.-->
+            <div class="campo"> <!--Divisor de inputs.-->
+                <span>Nome</span>
+                <input oninput="validarNome()" type="text" id="inputNome" placeholder="Original ou social, o que você preferir.">
+            </div>
+            
+            <div class="campo">
+                <span>E-mail</span>
+                <input oninput="validarEmail()" type="text" id="inputEmail" placeholder="Insira seu e-mail.">
+            </div>
+
+            <div class="campo">
+                <span>Senha</span>
+                <input oninput="validarSenha()" type="text" id="inputSenha" placeholder="Crie uma senha.">
+                
+                <input oninput="validarConfirmarSenha()" type="text" id="inputConfirmarSenha" placeholder="Confirme a sua senha.">
+            </div>
+
+            <div class="campo">
+                <span>Apelido</span>
+                <input oninput="validarApelido()" type="text" id="inputApelido" placeholder="O seu verdadeiro nome é você quem escolhe.">
+            </div>
+        </div>
+
+        <div class="containerPlayerDeMusica"></div>
+
+    </div>
 </body>
 </html>
