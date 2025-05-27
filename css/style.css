@@ -1,3 +1,6 @@
+/* Bibliotecas de estilização */
+
+
 /* Configurações padrão para todas as páginas. */
 :root {
     background-color: #090911;
@@ -6,3 +9,20 @@
     scrollbar-width: none;
 }
 
+
+
+.corpoPrincipal {
+
+}
+
+.corpoPrincipal_Container {
+
+}
+
+.secao {
+
+}
+
+.secaoContainer {
+
+}
