@@ -1,0 +1,8 @@
+/* Configurações padrão para todas as páginas. */
+:root {
+    background-color: #090911;
+    color: aliceblue;
+    
+    scrollbar-width: none;
+}
+
