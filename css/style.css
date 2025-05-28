@@ -4,30 +4,54 @@
 
 /* Configurações padrão para todas as páginas. */
 :root {
-    --papelDeParede: url(./wallpaperPlaceholder.png);
-
     --corDeFundoPadrao: #090911; /* Em caso da ausência de um papel de parede, ele usa o fundo com essa cor */
     --corDeTextoPadrao: #e7f8ff; /* O texto sempre vai ter essa cor como padrão */
     --validacaoErrada: #c70a23; /* Todas as validações incorretas (como senha incorreta) usarão DIVs com essa cor*/
     --validacaoCorreta: #06c536; /* Todas as validações corretas usarãi DIVs com essa cor */
 
-    scrollbar-width: none; 
-}
-
-
-
+    overflow: auto;
+    scrollbar-width: none; }
+    
 .corpoPrincipal {
+    background-image: url('./wallpaperPlaceholder.png');
+}
+
+.sideBar {
+    background-color: var(--validacaoCorreta);
+    
+    width: 150px;
+    height: 100vh;
+    padding-top: 20px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    position: fixed;
+}
+
+.sideBar .container {
+    font-weight: bolder;
+    font-size: 12px;
+}
+
+.sideBar a {
+    text-align: center;
+}
+
+
+
+
+
+
+.container {
 
 }
 
-.corpoPrincipal_Container {
+
+
+.secaoIndex {
 
 }
 
-.secao {
 
-}
-
-.secaoContainer {
-
-}
