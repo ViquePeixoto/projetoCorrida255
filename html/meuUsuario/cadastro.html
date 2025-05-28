@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro</title>
+</head>
+<body>
+    
+    <main>
+        <section id="secaoSideBar">
+            <a href="./torneios.html">Torneios</a>
+            <a href="./corredores.html">Corredores</a>
+            <a href="./garagem.html">Garagem</a>
+            <br><br>
+        </section>
+
+        <section id="secaoCadastro" class="secaoCadastro container">
+            <input oninput="validarNome()" type="text" id="inputNome" placeholder="Insira o seu nome." class="entradas">
+            <br><br>
+
+            <input oninput="validarEmail()" type="email" id="inputEmail" placeholder="Insira o seu e-mail." class="entradas">
+            <br><br>
+
+            <input oninput="validarSenha()" type="text" id="inputSenha" placeholder="Insira a sua senha." class="entradas">
+            <br><br>
+
+            <button onclick="verificarCriacaoDeConta()">Criar conta</button>
+
+            <div id="divVerificacaoDeConta"></div>
+        </section>
+    </main>
+</body>
+</html>
+
+<script>
+    var listaDeNomes = [];
+    var listaDeSenhas = [];
+    var listaDeEmails = [];
+
+    validarNome() {
+        var mensagem = "";
+        var nome = inputNome.value;
+    }
+
+    validarEmail() {
+        var mensagem = "";
+        var email = inputEmail.value;
+    }
+    
+    validarSenha() {
+        var mensagem = "";
+        var senha = inputSenha.value;
+    }
+
+    verificarCriacaoDeConta() {
+        var mensagem = "";
+        var nome = inputNome.value;
+        var email = inputEmail.value;
+        var senha = inputSenha.value;
+
+        if ((nome || email || senha) == "") {
+            mensagem = "Preencha todos os campos para prosseguir."
+        } divVerificacaoDeConta.innerHTML = mensagem;
+    }
+</script>
