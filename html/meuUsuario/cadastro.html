@@ -41,11 +41,20 @@
     validarNome() {
         var mensagem = "";
         var nome = inputNome.value;
+
+        for (var i = 0; i <= listaDeNomes.length; i ++) {
+            var nomeAtual = i;
+
+        }
     }
 
     validarEmail() {
         var mensagem = "";
         var email = inputEmail.value;
+
+        if (!email.includes('@')) {
+            mensagem 
+        }
     }
     
     validarSenha() {
@@ -61,6 +70,9 @@
 
         if ((nome || email || senha) == "") {
             mensagem = "Preencha todos os campos para prosseguir."
-        } divVerificacaoDeConta.innerHTML = mensagem;
+        } else {
+            mensagem = "Sua conta foi criada com sucesso."
+        } divValidacaoDeConta.innerHTML = mensagem;
+
     }
 </script>
