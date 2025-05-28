@@ -1,12 +1,16 @@
 /* Bibliotecas de estilização */
 
-
+--
 
 /* Configurações padrão para todas as páginas. */
 :root {
-    background-color: #090911;
-    color: rgb(224, 241, 255);
-    
+    --papelDeParede: url(./wallpaperPlaceholder.png);
+
+    --corDeFundoPadrao: #090911; /* Em caso da ausência de um papel de parede, ele usa o fundo com essa cor */
+    --corDeTextoPadrao: #e7f8ff; /* O texto sempre vai ter essa cor como padrão */
+    --validacaoErrada: #c70a23; /* Todas as validações incorretas (como senha incorreta) usarão DIVs com essa cor*/
+    --validacaoCorreta: #06c536; /* Todas as validações corretas usarãi DIVs com essa cor */
+
     scrollbar-width: none; 
 }
 
