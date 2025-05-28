@@ -11,13 +11,25 @@
     
 .corpoPrincipal {
     background-color: var(--corDeFundoPadrao);
+}
+
+.container {
 
 }
+
+.secaoIndex {
+
+}
+
+
+
+
 
 .sideBar {
     background-color: var(--validacaoCorreta);
     width: 150px;
     height: 100vh;
+    border-radius: 15px;
 
     display: flex;
     flex-direction: column;
@@ -27,27 +39,22 @@
 }
 
 .sideBar .container {
+    display: flex;
     font-weight: bolder;
     font-size: 12px;
 }
 
 .sideBar a {
-    text-align: center;
+    text-decoration: none;
+    color: white;
+    font-weight: normal;
+    font-size: 25px;
+    margin: 60px 0;
+
+    transform: scale(1);
+    transition: transform 0.6s ease;
 }
 
-
-
-
-
-
-.container {
-
+.sideBar a:hover {
+    transform: scale(1.70);
 }
-
-
-
-.secaoIndex {
-
-}
-
-
