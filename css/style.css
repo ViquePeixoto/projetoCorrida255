@@ -1,12 +1,13 @@
 /* Bibliotecas de estilização */
 
 
+
 /* Configurações padrão para todas as páginas. */
 :root {
     background-color: #090911;
-    color: aliceblue;
+    color: rgb(224, 241, 255);
     
-    scrollbar-width: none;
+    scrollbar-width: none; 
 }
 
 
