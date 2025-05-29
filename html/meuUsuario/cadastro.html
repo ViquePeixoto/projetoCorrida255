@@ -4,8 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro</title>
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="../../css/style.css">
 </head>
 
 <body>
@@ -38,49 +37,10 @@
             <div id="divVerificacaoDeConta"></div>
         </section>
     </main>
+
+    <div class="barraRolante">
+        <span id="spanFlavorText"></span>
+    </div>
 </body>
 </html>
-
-<script>
-    var listaDeNomes = [];
-    var listaDeSenhas = [];
-    var listaDeEmails = [];
-
-    function validarNome() {
-        var mensagem = "";
-        var nome = inputNome.value;
-
-        for (var i = 0; i <= listaDeNomes.length; i ++) {
-            var nomeAtual = i;
-
-        }
-    }
-
-    function validarEmail() {
-        var mensagem = "";
-        var email = inputEmail.value;
-
-        if (!email.includes('@')) {
-            mensagem 
-        }
-    }
-    
-    function validarSenha() {
-        var mensagem = "";
-        var senha = inputSenha.value;
-    }
-
-    function verificarCriacaoDeConta() {
-        var mensagem = "";
-        var nome = inputNome.value;
-        var email = inputEmail.value;
-        var senha = inputSenha.value;
-
-        if ((nome || email || senha) == "") {
-            mensagem = "Preencha todos os campos para prosseguir."
-        } else {
-            mensagem = "Sua conta foi criada com sucesso."
-        } divValidacaoDeConta.innerHTML = mensagem;
-
-    }
-</script>
+<script src="../../script/cadastro.js"></script>
