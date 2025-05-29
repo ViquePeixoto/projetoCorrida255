@@ -40,5 +40,4 @@ setInterval(flavorTextAleatorio, 6000);
 document.addEventListener('scroll', () => {
     var scroll = window.scrollY;
     var sidebar = document.querySelector('.sideBar');
-
     sidebar.style.setProperty('--scroll-position', `${scroll / 3}px`); });
