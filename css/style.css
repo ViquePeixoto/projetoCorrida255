@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Lexend&display=swap');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css');
 
 :root {
     --corDeFundoPadrao: #000000;
@@ -11,6 +13,10 @@
     
 .corpoPrincipal {
     background-color: var(--corDeFundoPadrao);
+    font-family: 'Lexend', sans-serif;
+    color: var(--corDeTextoPadrao);
+    margin: 0;
+    padding: 0;
 }
 
 .container {
@@ -23,19 +29,76 @@
 
 
 
+.sideBar {
+  position: relative; /* Necessário para o pseudo-elemento */
+  width: 150px;
+  height: 100vh;
+  background-color: var(--validacaoCorreta); /* Cor de fundo */
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+}
+
+.sideBar::before {
+  content: ''; /* Necessário para exibir o pseudo-elemento */
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 200%; /* Altura maior para criar o efeito de parallax */
+  background-image: url('./imagem-camada-sidebar.png'); /* Substitua pelo caminho da sua imagem */
+  background-repeat: no-repeat;
+  background-size: cover; /* ou 'contain', dependendo da imagem */
+  background-position: center top;
+  z-index: -1; /* Coloca atrás do conteúdo da sidebar */
+  transform: translateY(0); /* Inicia na posição original */
+  transition: transform 0.1s ease; /* Suaviza o movimento */
+}
+
+body {
+  overflow-y: scroll; /* Garante que o scroll funcione */
+}
+
+body.rolando .sideBar::before {
+  transform: translateY(calc(-50px + var(--scroll-position, 0px)));
+}
+
+
+
+
 
 
 .sideBar {
-    background-color: var(--validacaoCorreta);
+    background-color: #c9041f;
     width: 150px;
     height: 100vh;
-    border-radius: 15px;
+    margin: 10px;
 
     display: flex;
     flex-direction: column;
     justify-content: start;
     align-items: center;
     position: fixed;
+    overflow: hidden;
+    z-index: 1;
+}
+
+/* Camada decorativa com imagem e parallax */
+.sideBar::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 200%;
+    background-image: url('./sideBarOverlay.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center top;
+    z-index: -1;
+    transform: translateY(0);
+    transition: transform 0.1s linear;
 }
 
 .sideBar .container {
@@ -52,9 +115,54 @@
     margin: 60px 0;
 
     transform: scale(1);
-    transition: transform 0.6s ease;
+    transition: transform 0.4s ease;
 }
 
 .sideBar a:hover {
     transform: scale(1.70);
+}
+
+
+
+
+
+.barraRolante {
+  position: fixed;
+  bottom: 30px;
+  left: 0;
+  width: 100vw;
+  height: 50px;
+  background-color: black;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  z-index: 9999;
+}
+
+.barraRolante span {
+    font-weight: 600;
+    font-size: 30px;
+    letter-spacing: 1.2px;
+    
+    display: inline-block;
+    white-space: nowrap;
+    padding-left: 100%;
+    
+    color: white;
+    cursor: default;
+    
+    animation: rolarTexto 6s linear infinite;
+}
+
+@keyframes rolarTexto {
+  0% { transform: translateX(0);
+  }
+  100% { transform: translateX(-100%);
+  }
+}
+
+#spanFlavorText {
+  transition: opacity 0.5s ease;
+  opacity: 1;
 }
