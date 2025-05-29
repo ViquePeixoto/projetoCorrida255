@@ -10,7 +10,22 @@
     overflow: auto;
     scrollbar-width: none;
 }
-    
+
+
+
+
+
+body {
+  overflow-y: scroll;
+}
+body.rolando .sideBar::before {
+  transform: translateY(calc(-50px + var(--scroll-position, 0px)));
+}
+
+
+
+
+
 .corpoPrincipal {
     background-color: var(--corDeFundoPadrao);
     font-family: 'Lexend', sans-serif;
@@ -18,43 +33,6 @@
     margin: 0;
     padding: 0;
 }
-
-
-.sideBar {
-  position: relative; /* Necessário para o pseudo-elemento */
-  width: 150px;
-  height: 100vh;
-  background-color: var(--validacaoCorreta); /* Cor de fundo */
-  display: flex;
-  flex-direction: column;
-  justify-content: start;
-  align-items: center;
-}
-
-.sideBar::before {
-  content: ''; /* Necessário para exibir o pseudo-elemento */
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 200%; /* Altura maior para criar o efeito de parallax */
-  background-image: url('./imagem-camada-sidebar.png'); /* Substitua pelo caminho da sua imagem */
-  background-repeat: no-repeat;
-  background-size: cover; /* ou 'contain', dependendo da imagem */
-  background-position: center top;
-  z-index: -1; /* Coloca atrás do conteúdo da sidebar */
-  transform: translateY(0); /* Inicia na posição original */
-  transition: transform 0.1s ease; /* Suaviza o movimento */
-}
-
-body {
-  overflow-y: scroll; /* Garante que o scroll funcione */
-}
-
-body.rolando .sideBar::before {
-  transform: translateY(calc(-50px + var(--scroll-position, 0px)));
-}
-
 
 
 
@@ -146,4 +124,24 @@ body.rolando .sideBar::before {
   0% { transform: translateX(0);
   }
   100% { transform: translateX(-100%); }
+}
+
+
+.secaoIndex {
+  margin: 50px;
+  margin-left: 300px;
+  
+  display: flex;
+  position: relative;
+}
+
+.secaoIndex .container {
+  background-color: #c9041f;
+  width: 200vh;
+  height: 200px;
+  border-radius: 15px;
+}
+
+.secaoIndex .container p {
+
 }
