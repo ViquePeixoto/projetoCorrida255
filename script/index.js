@@ -1,3 +1,5 @@
+
+// Estrutura para a barra rolante com flavor text.
 var textos = [
     'BEM-VINDO AO PRÓXIMO NÍVEL.',
     'PIXE MUROS, BATA EM FASCISTAS.',

@@ -1,44 +1,47 @@
-    var listaDeNomes = [];
-    var listaDeSenhas = [];
-    var listaDeEmails = [];
 
-    function validarNome() {
-        var mensagem = "";
-        var nome = inputNome.value;
 
-        for (var i = 0; i <= listaDeNomes.length; i ++) {
-            var nomeAtual = i;
+// Estrutura para a validação de cadastro.
+var listaDeNomes = [];
+var listaDeSenhas = [];
+var listaDeEmails = [];
 
-        }
-    }
-
-    function validarEmail() {
-        var mensagem = "";
-        var email = inputEmail.value;
-
-        if (!email.includes('@')) {
-            mensagem 
-        }
-    }
+function validarNome() {
+    var mensagem = "";
+    var nome = inputNome.value;
     
-    function validarSenha() {
-        var mensagem = "";
-        var senha = inputSenha.value;
+    for (var i = 0; i <= listaDeNomes.length; i ++) {
+        var nomeAtual = i;
     }
+}
 
-    function verificarCriacaoDeConta() {
-        var mensagem = "";
-        var nome = inputNome.value;
-        var email = inputEmail.value;
-        var senha = inputSenha.value;
-
-        if ((nome || email || senha) == "") {
-            mensagem = "Preencha todos os campos para prosseguir."
-        } else {
-            mensagem = "Sua conta foi criada com sucesso."
-        } divValidacaoDeConta.innerHTML = mensagem;
+function validarEmail() {
+    var mensagem = "";
+    var email = inputEmail.value;
+    
+    if (!email.includes('@')) {
+        mensagem 
     }
+}
+    
+function validarSenha() {
+    var mensagem = "";
+    var senha = inputSenha.value;
+}
 
+function verificarCriacaoDeConta() {
+    var mensagem = "";
+    var nome = inputNome.value;
+    var email = inputEmail.value;
+    var senha = inputSenha.value;
+    
+    if ((nome || email || senha) == "") {
+        mensagem = "Preencha todos os campos para prosseguir."
+    } else {
+        mensagem = "Sua conta foi criada com sucesso."
+    } divValidacaoDeConta.innerHTML = mensagem;
+}
+
+// Estrutura para a barra rolante com flavor text.
 var textos = [
     'BEM-VINDO AO PRÓXIMO NÍVEL.',
     'PIXE MUROS, BATA EM FASCISTAS.',
@@ -81,5 +84,4 @@ setInterval(flavorTextAleatorio, 6000);
 document.addEventListener('scroll', () => {
     var scroll = window.scrollY;
     var sidebar = document.querySelector('.sideBar');
-
     sidebar.style.setProperty('--scroll-position', `${scroll / 3}px`); });
