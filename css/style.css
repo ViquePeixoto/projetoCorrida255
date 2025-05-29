@@ -1,11 +1,15 @@
+
+/* Fonte 'Lexend' do Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Lexend&display=swap');
+
+/* Biblioteca para os icones do site */
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css');
 
+/* Variaveis universais para o site */
 :root {
     --corDeFundoPadrao: #000000;
     --corDeTextoPadrao: #ffffff;
-    --validacaoErrada: #c70a23;
-    --validacaoCorreta: #07e76c;
+    --corDecoracao1: #c9041f;
 
     overflow: auto;
     scrollbar-width: none;
@@ -15,19 +19,21 @@
 
 
 
+/* CLASSES E CONFIGURAÇÕES COMPARTILHADAS ENTRE AS PÁGINAS HTML */
+/* Classe para configurações mais gerais do body */
 body {
   overflow-y: scroll;
 }
 body.rolando .sideBar::before {
   transform: translateY(calc(-50px + var(--scroll-position, 0px)));
 }
-
-
-
-
-
 .corpoPrincipal {
-    background-color: var(--corDeFundoPadrao);
+    background-image: url(backgroundIndex.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center top;
+    background-color: var(--corDecoracao1);
+    
     font-family: 'Lexend', sans-serif;
     color: var(--corDeTextoPadrao);
     margin: 0;
@@ -38,8 +44,9 @@ body.rolando .sideBar::before {
 
 
 
+/* Configurações da sidebar */
 .sideBar {
-    background-color: #c9041f;
+    background-color: var(--corDecoracao1);
     width: 150px;
     height: 100vh;
     margin: 10px;
@@ -74,7 +81,7 @@ body.rolando .sideBar::before {
 }
 .sideBar a {
     text-decoration: none;
-    color: white;
+    color: var(--corDeTextoPadrao);
     font-weight: normal;
     font-size: 25px;
     margin: 60px 0;
@@ -88,21 +95,21 @@ body.rolando .sideBar::before {
 
 
 
-
-
+/* Barra rolante no fundo da pagina */
 .barraRolante {
   position: fixed;
   bottom: 30px;
   left: 0;
   width: 100vw;
   height: 50px;
-  background-color: black;
+  background-color: var(--corDeFundoPadrao);
   overflow: hidden;
   display: flex;
   align-items: center;
   padding: 0 20px;
   z-index: 9999;
-} .barraRolante span {
+}
+.barraRolante span {
   font-weight: 600;
   font-size: 30px;
   letter-spacing: 1.2px;
@@ -111,7 +118,7 @@ body.rolando .sideBar::before {
   white-space: nowrap;
   padding-left: 100%;
     
-  color: white;
+  color: var(--corDeTextoPadrao);
   cursor: default;
     
   animation: rolarTexto 6s linear infinite;
@@ -127,21 +134,75 @@ body.rolando .sideBar::before {
 }
 
 
-.secaoIndex {
-  margin: 50px;
-  margin-left: 300px;
-  
-  display: flex;
-  position: relative;
+
+
+
+/* CLASSES E CONFIGURAÇÕES PARA A PÁGINA INDEX */
+/* Slideshow para o contexto no index */
+#secaoContexto {
+    margin-left: 450px;
+    padding: 30px;
+    min-height: 100vh;
+    box-sizing: border-box;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
 }
-
-.secaoIndex .container {
-  background-color: #c9041f;
-  width: 200vh;
-  height: 200px;
-  border-radius: 15px;
+.slideshowCaixa {
+    background-image: url(../css/contextoOverlay.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    position: relative;
+    background-color:var(--corDecoracao1);
+    
+    justify-content: center;
+    max-width: 650px;
+    min-height: 300px;
+    padding: 10px 30px;
+    border-radius: 20px;
 }
+.slideshowTexto {
+    opacity: 0;
+    transform: translateX(30px);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    position: absolute;
+    pointer-events: none;
 
-.secaoIndex .container p {
-
+    font-size: 20px;
+    font-weight: 400;
+    max-width: 700px;
+    line-height: 1.6;
+    text-align: justify;
+}
+.slideshowTexto.ativo {
+    opacity: 1;
+    transform: translateX(0);
+    position: relative;
+    pointer-events: auto;
+}
+.slideshowBotao {
+    background: none;
+    border: none;
+    font-size: 30px;
+    color: var(--corDeTextoPadrao);
+    cursor: pointer;
+    z-index: 2;
+    padding: 10px;
+    transition: transform 0.2s ease;
+}
+.slideshowBotao:hover {
+    transform: scale(1.2);
+}
+.slideshowBotao.esquerda {
+    position: absolute;
+    left: -40px;
+}
+.slideshowBotao.direita {
+    position: absolute;
+    right: -40px;
 }

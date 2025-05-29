@@ -1,4 +1,4 @@
-var textos = [
+var listaDeFlavorText = [
     'BEM-VINDO AO PRÓXIMO NÍVEL.',
     'PIXE MUROS, BATA EM FASCISTAS.',
     'O QUE VOCÊ TEM A PERDER ALÉM DE SUAS CORRENTES?',
@@ -23,19 +23,17 @@ var spanFlavorText = document.getElementById("spanFlavorText");
 var flavorAnterior = -1;
 
 function flavorTextAleatorio() {
-    var novoIndice;
+    var novoIndice = Math.floor(Math.random() * listaDeFlavorText.length);
     
-    do {
-        novoIndice = Math.floor(Math.random() * textos.length);
-    } while (novoIndice == flavorAnterior);
-    flavorAnterior = novoIndice;
-    spanFlavorText.style.opacity = 0;
+    while (novoIndice === flavorAnterior) {
+        novoIndice = Math.floor(Math.random() * listaDeFlavorText.length);
+    } spanFlavorText.style.opacity = 0;
     
     setTimeout(() => {
-        spanFlavorText.textContent = textos[novoIndice];
+        spanFlavorText.textContent = listaDeFlavorText[novoIndice];
         spanFlavorText.style.opacity = 1; }, 500);
 } flavorTextAleatorio();
-setInterval(flavorTextAleatorio, 6000);
+setInterval(flavorTextAleatorio, 3000);
 
 document.addEventListener('scroll', () => {
     var scroll = window.scrollY;
