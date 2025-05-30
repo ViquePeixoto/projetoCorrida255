@@ -210,6 +210,7 @@ input {
     display: flex;
     align-items: flex-end;
     justify-content: center;
+    position: relative;
 }
 .secaoCadastro {
     margin-top: 20px;
@@ -263,11 +264,12 @@ input {
     cursor: pointer;
 }
 #divVerificacaoDeConta {
+    align-items: center;
+    position: absolute;
+    right: 60px;
+    top: 50%;
     color: var(--corDeTextoPadrao);
-    font-size: 15px;
-    font-weight: bold;
-    text-align: center;
+    font-size: 20px;
     
-    max-width: 300px;
-    margin-top: 20px;
+    width: 300px;
 }

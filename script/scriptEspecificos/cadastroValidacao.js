@@ -16,7 +16,7 @@ function validarNome() {
 
     for (var i = 0; i < nome.length; i ++) {
         if (listaDeSimbolosEspeciais.includes(nome[i])) {
-            mensagem = "Seu nome é inválido, não use símbolos especiais.";
+            mensagem = "Permitimos de tudo, mas cuidado com os símbolos especiais.";
             break; }
     } divVerificacaoDeConta.innerHTML = mensagem;
 }
@@ -26,7 +26,7 @@ function validarEmail() {
     var email = inputEmail.value;
 
     if (!email.includes('@')) {
-        mensagem = "Seu e-mail é inválido. Use '@'.";
+        mensagem = "Seu e-mail não contém um @... Ainda.";
     } divVerificacaoDeConta.innerHTML = mensagem;
 }
 
@@ -55,7 +55,7 @@ function validarSenha() {
     }
     
     if (!(contemLetraMaiuscula && contemLetraMinuscula && contemNumero && contemSimbolosEspeciais)) {
-        mensagem = "Sua senha é fraca. Lhe falta letra maiúscula, minúscula, número e símbolos especiais.";
+        mensagem = "Para sua segurança, use letras maiúsculas, minúsculas, números e símbolos.";
     } divVerificacaoDeConta.innerHTML = mensagem;
 }
 
