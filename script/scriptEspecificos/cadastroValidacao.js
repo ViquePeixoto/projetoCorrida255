@@ -3,28 +3,60 @@
 var listaDeNomes = [];
 var listaDeSenhas = [];
 var listaDeEmails = [];
+var listaDeSimbolosEspeciais = [
+    '.', ',', '+', '-', '_', '(',
+    '!', '@', '>', '?', '/', ')',
+    '#', '$', ':', '|', '<', '%',
+    '^', '{', '}', ';', '&', '*',
+    '=', '[', ']' ];
 
 function validarNome() {
     var mensagem = "";
     var nome = inputNome.value;
-    
-    for (var i = 0; i <= listaDeNomes.length; i ++) {
-        var nomeAtual = i;
-    }
+
+    for (var i = 0; i < nome.length; i ++) {
+        if (listaDeSimbolosEspeciais.includes(nome[i])) {
+            mensagem = "Seu nome é inválido, não use símbolos especiais.";
+            break; }
+    } divVerificaoDeConta.innerHTML = mensagem;
 }
 
 function validarEmail() {
     var mensagem = "";
     var email = inputEmail.value;
-    
+
     if (!email.includes('@')) {
-        mensagem 
-    }
+        mensagem = "Seu e-mail é inválido. Use '@'.";
+    } divVerificaoDeConta.innerHTML = mensagem;
 }
-    
+
 function validarSenha() {
     var mensagem = "";
     var senha = inputSenha.value;
+
+    var contemLetraMaiuscula = false;
+    var contemLetraMinuscula = false;
+    var contemNumero = false;
+    var contemSimbolosEspeciais = false;
+
+    for (var i = 0; i < senha.length; i++) {
+        var validacaoSenha = senha[i];
+        if (validacaoSenha >= "A" && validacaoSenha <= "Z") {
+            contemLetraMaiuscula = true;
+        }
+        else if (validacaoSenha >= "a" && validacaoSenha <= "z") {
+            contemLetraMinuscula = true;
+        }
+        else if (validacaoSenha >= "0" && validacaoSenha <= "9") {
+            contemNumero = true;
+        } 
+        else if (listaDeSimbolosEspeciais.includes(validacaoSenha)) {
+            contemSimbolosEspeciais = true; }
+    }
+    
+    if (!(contemLetraMaiuscula && contemLetraMinuscula && contemNumero && contemSimbolosEspeciais)) {
+        mensagem = "Sua senha é fraca. Lhe falta letra maiúscula, minúscula, número e símbolos especiais.";
+    } divVerificaoDeConta.innerHTML = mensagem;
 }
 
 function verificarCriacaoDeConta() {
@@ -32,10 +64,20 @@ function verificarCriacaoDeConta() {
     var nome = inputNome.value;
     var email = inputEmail.value;
     var senha = inputSenha.value;
-    
-    if ((nome || email || senha) == "") {
-        mensagem = "Preencha todos os campos para prosseguir."
-    } else {
-        mensagem = "Sua conta foi criada com sucesso."
-    } divValidacaoDeConta.innerHTML = mensagem;
+
+    if (nome == "" || email == "" || senha == "") {
+        mensagem = "Preencha todos os campos para prosseguir.";
+        divVerificaoDeConta.innerHTML = mensagem;
+        return;
+    }
+
+    if (validarNome() && validarEmail() && validarSenha()) {
+        listaDeNomes.push(nome);
+        listaDeEmails.push(email);
+        listaDeSenhas.push(senha);
+        mensagem = "Sua conta foi criada com sucesso!";
+    }
+    else {
+        mensagem = "Não foi possível cadastrar sua conta. Tente novamente.";
+    } divVerificaoDeConta.innerHTML = mensagem;
 }

@@ -21,18 +21,17 @@
 /* CLASSES E CONFIGURAÇÕES COMPARTILHADAS ENTRE AS PÁGINAS HTML */
 /* Classe para configurações mais gerais do body */
 body {
-  overflow: hidden;
-}
-.corpoPrincipal {
     background-image: url(../css/imagensBG/homeBG.png);
     background-size: initial;
     background-position: top;
     background-color: var(--corDecoracao1);
     
-    font-family: 'Lexend', sans-serif;
-    color: var(--corDeTextoPadrao);
+    overflow: hidden;
     margin: 0;
     padding: 0;
+
+    font-family: 'Lexend', sans-serif;
+    color: var(--corDeTextoPadrao);
 }
 
 
@@ -195,4 +194,51 @@ body {
 .slideshowBotao.direita {
     position: absolute;
     right: -30px;
+}
+
+
+
+
+
+.secaoCadastro {
+    margin-left: 100px;
+    padding: 60px;
+    height: 100vh;  
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    justify-content: center;
+}
+
+.entradas {
+    margin: 25px;
+    width: 400px;
+    padding: 15px;
+    font-size: 15px;
+    border: 2px solid var(--corDecoracao1);
+    border-radius: 10px;
+    outline: none;
+    background-color: var(--corDeTextoPadrao);
+    color: var(--corDeFundoPadrao);
+    transition: border-color 0.3s ease;
+    align-items: center;
+}
+#botaoCriarConta {
+    padding: 15px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 8px;
+    background-color: var(--corDeFundoPadrao);
+    color: #fff;
+    cursor: pointer;
+}
+#divVerificacaoDeConta {
+    font-size: 15px;
+    font-weight: bold;
+    text-align: center;
+    
+    max-width: 300px;
+    margin-top: 20px;
 }

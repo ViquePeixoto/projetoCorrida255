@@ -24,19 +24,16 @@
     
     
     
-    <section id="secaoCadastro" class="secaoCadastro container">
-        <input oninput="validarNome()" type="text" id="inputNome" placeholder="Insira o seu nome." class="entradas">
-        <br><br>
-        
-        <input oninput="validarEmail()" type="email" id="inputEmail" placeholder="Insira o seu e-mail." class="entradas">
-        <br><br>
-        
-        <input oninput="validarSenha()" type="text" id="inputSenha" placeholder="Insira a sua senha." class="entradas">
-        <br><br>
-        
-        <button onclick="verificarCriacaoDeConta()">Criar conta</button>
-        
-        <div id="divVerificacaoDeConta"></div>
+    <section id="secaoCadastro" class="secaoCadastro">
+            <input oninput="validarNome()" type="text" id="inputNome" placeholder="Insira o seu nome." class="entradas">
+
+            <input oninput="validarEmail()" type="email" id="inputEmail" placeholder="Insira o seu e-mail." class="entradas">
+
+            <input oninput="validarSenha()" type="text" id="inputSenha" placeholder="Insira a sua senha." class="entradas">
+            
+            <button id="botaoCriarConta" onclick="verificarCriacaoDeConta()">Criar conta</button>
+            
+            <div id="divVerificacaoDeConta"></div> <!--A DIV não é chamada pelo script. Necessário rever.-->
     </section>
     
 
@@ -46,4 +43,5 @@
     </div>
 </body>
 </html>
+<script src="../script/scriptEspecificos/cadastroValidacao.js"></script>
 <script src="../script/scriptUniversais/barra_rolante.js"></script>
