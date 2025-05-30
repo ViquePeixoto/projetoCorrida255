@@ -21,12 +21,12 @@
 /* CLASSES E CONFIGURAÇÕES COMPARTILHADAS ENTRE AS PÁGINAS HTML */
 /* Classe para configurações mais gerais do body */
 body {
-  overflow: none;
+  overflow: hidden;
 }
 .corpoPrincipal {
     background-image: url(../css/imagensBG/homeBG.png);
     background-size: initial;
-    background-position: center top;
+    background-position: top;
     background-color: var(--corDecoracao1);
     
     font-family: 'Lexend', sans-serif;
@@ -47,86 +47,80 @@ body {
     margin: 10px;
     border-radius: 15px 15px 0px 0px;
 
-    display: flex;
-    flex-direction: column;
-    justify-content: start;
     align-items: center;
     position: fixed;
     overflow: hidden;
-    z-index: 1;
+    justify-content: start;
+    
+    display: flex;
+    flex-direction: column; 
 }
 .sideBar::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 200%;
     background-image: url('../css/imagensOverlay/sidebarOverlay.png');
     background-size: contain;
-    background-repeat: no-repeat;
     background-position: center top;
-    z-index: -1;
+    background-repeat: no-repeat;
+
+    content: '';
+    width: 100%;
+    height: 200%;
+    
+    position: absolute;
+
     transform: translateY(0);
     transition: transform 0.1s linear;
 }
-.sideBar .container {
-    display: flex;
-    font-weight: bolder;
-    font-size: 12px;
-}
 .sideBar a {
-    text-decoration: none;
     color: var(--corDeTextoPadrao);
-    font-weight: normal;
     font-size: 25px;
-    margin: 60px 0;
+    margin: 55px;
 
     transform: scale(1);
     transition: transform 0.4s ease;
 }
 .sideBar a:hover {
-    transform: scale(1.70);
+    transform: scale(1.80);
 }
+
+
 
 
 
 /* Barra rolante no fundo da pagina */
 .barraRolante {
-  position: fixed;
-  bottom: 30px;
-  left: 0;
-  width: 100vw;
-  height: 50px;
-  background-color: var(--corDeFundoPadrao);
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  padding: 0 20px;
-  z-index: 9999;
+    background-color: var(--corDeFundoPadrao);
+    bottom: 30px;
+    
+    width: 100vw;
+    height: 50px;
+    
+    align-items: center;
+    position: fixed;
+    overflow: hidden;
+    
+    display: flex;
+    padding: 0 20px;
 }
 .barraRolante span {
-  font-weight: 600;
-  font-size: 30px;
-  letter-spacing: 1.2px;
-  
-  display: inline-block;
-  white-space: nowrap;
-  padding-left: 100%;
+    color: var(--corDeTextoPadrao);
+    font-size: 35px;
+    cursor: default;
+    font-weight: 600;
+    white-space: nowrap;
     
-  color: var(--corDeTextoPadrao);
-  cursor: default;
+    display: inline-block;
+    padding-left: 100%;
     
-  animation: rolarTexto 6s linear infinite;
+    animation: spanFlavorTextRoll 6s linear infinite;
 }
 #spanFlavorText {
-  transition: opacity 0.5s ease;
-  opacity: 1;
+    transition: opacity 0.3s ease-in-out;
 }
-@keyframes rolarTexto {
-  0% { transform: translateX(0);
-  }
-  100% { transform: translateX(-100%); }
+@keyframes spanFlavorTextRoll {
+    0% { transform: translateX(0);
+    }
+    100% { transform: translateX(-100%);
+    }
 }
 
 
@@ -137,68 +131,68 @@ body {
 /* Slideshow para o contexto no index */
 #secaoContexto {
     margin-left: 450px;
-    padding: 30px;
-    min-height: 100vh;
-    box-sizing: border-box;
+    height: 100vh;
 
-    display: flex;
     align-items: center;
-    justify-content: center;
-    position: relative;
-    overflow: hidden;
+    
+    display: flex;
+    padding: 30px;
 }
 .slideshowCaixa {
     background-image: url(../css/imagensOverlay/contextoOverlay.png);
     background-size: cover;
     background-repeat: no-repeat;
-    display: flex;
+    background-color:var(--corDecoracao1);
+    border-radius: 20px;
+    
+    width: 650vh;
+    height: 300px;
+
     align-items: center;
     position: relative;
-    background-color:var(--corDecoracao1);
     
-    justify-content: center;
-    max-width: 650px;
-    min-height: 300px;
+    display: flex;
     padding: 10px 30px;
-    border-radius: 20px;
 }
 .slideshowTexto {
     opacity: 0;
+    font-size: 20px;
+    font-weight: 600;
+    
+    width: 700px;
+    line-height: 1.5;
+    text-align: justify;
+    
+    position: absolute;
+
     transform: translateX(30px);
     transition: opacity 0.2s ease, transform 0.2s ease;
-    position: absolute;
-    pointer-events: none;
-
-    font-size: 20px;
-    font-weight: 400;
-    max-width: 700px;
-    line-height: 1.6;
-    text-align: justify;
 }
 .slideshowTexto.ativo {
     opacity: 1;
     transform: translateX(0);
-    position: relative;
-    pointer-events: auto;
 }
 .slideshowBotao {
-    background: none;
-    border: none;
-    font-size: 30px;
     color: var(--corDeTextoPadrao);
+    background: none;
+    font-size: 30px;
+    border: none;
+    
     cursor: pointer;
-    z-index: 2;
-    padding: 10px;
+    
+    padding: 20px;
+    z-index: 5;
+    
     transition: transform 0.2s ease;
 }
 .slideshowBotao:hover {
-    transform: scale(1.2);
+    transform: scale(1.5);
 }
 .slideshowBotao.esquerda {
     position: absolute;
-    left: -40px;
+    left: -30px;
 }
 .slideshowBotao.direita {
     position: absolute;
-    right: -40px;
+    right: -30px;
 }
