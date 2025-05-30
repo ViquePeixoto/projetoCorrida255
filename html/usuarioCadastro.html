@@ -8,6 +8,9 @@
 </head>
 
 <body class="corpoPrincipal">
+
+    <a href="../html/visitanteHome.html" title="Home" id="logotipoSite"></a>
+
     <section id="secaoSideBar" class="sideBar container">
         <a href="../html/visitanteTorneio.html">
             <i class="fas fa-flag-checkered" title="Torneios"></i>
@@ -22,21 +25,25 @@
         </a>
     </section>
     
-    
-    
-    <section id="secaoCadastro" class="secaoCadastro">
+    <main class="secaoPrincipal">
+        <section id="secaoCadastro" class="secaoCadastro">
+            <p class="secaoCadastro">NOME DE USUÁRIO</p>
             <input oninput="validarNome()" type="text" id="inputNome" placeholder="Insira o seu nome." class="entradas">
-
-            <input oninput="validarEmail()" type="email" id="inputEmail" placeholder="Insira o seu e-mail." class="entradas">
-
-            <input oninput="validarSenha()" type="text" id="inputSenha" placeholder="Insira a sua senha." class="entradas">
             
+            <p class="secaoCadastro">E-MAIL</p>
+            <input oninput="validarEmail()" type="email" id="inputEmail" placeholder="Insira o seu e-mail." class="entradas">
+            
+            <p class="secaoCadastro">SENHA</p>
+            <input oninput="validarSenha()" type="text" id="inputSenha" placeholder="Insira a sua senha." class="entradas">
+
+            <a href="../html/usuarioLogin.html">Já tenho uma conta.</a>
             <button id="botaoCriarConta" onclick="verificarCriacaoDeConta()">Criar conta</button>
             
             <div id="divVerificacaoDeConta"></div> <!--A DIV não é chamada pelo script. Necessário rever.-->
-    </section>
-    
-
+        </section>
+    </main>
+        
+        
 
     <div class="barraRolante">
         <span id="spanFlavorText"></span>
