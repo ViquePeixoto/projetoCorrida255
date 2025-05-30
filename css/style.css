@@ -263,6 +263,7 @@ input {
     cursor: pointer;
 }
 #divVerificacaoDeConta {
+    color: var(--corDeTextoPadrao);
     font-size: 15px;
     font-weight: bold;
     text-align: center;

@@ -18,7 +18,7 @@ function validarNome() {
         if (listaDeSimbolosEspeciais.includes(nome[i])) {
             mensagem = "Seu nome é inválido, não use símbolos especiais.";
             break; }
-    } divVerificaoDeConta.innerHTML = mensagem;
+    } divVerificacaoDeConta.innerHTML = mensagem;
 }
 
 function validarEmail() {
@@ -27,7 +27,7 @@ function validarEmail() {
 
     if (!email.includes('@')) {
         mensagem = "Seu e-mail é inválido. Use '@'.";
-    } divVerificaoDeConta.innerHTML = mensagem;
+    } divVerificacaoDeConta.innerHTML = mensagem;
 }
 
 function validarSenha() {
@@ -56,7 +56,7 @@ function validarSenha() {
     
     if (!(contemLetraMaiuscula && contemLetraMinuscula && contemNumero && contemSimbolosEspeciais)) {
         mensagem = "Sua senha é fraca. Lhe falta letra maiúscula, minúscula, número e símbolos especiais.";
-    } divVerificaoDeConta.innerHTML = mensagem;
+    } divVerificacaoDeConta.innerHTML = mensagem;
 }
 
 function verificarCriacaoDeConta() {
@@ -67,7 +67,7 @@ function verificarCriacaoDeConta() {
 
     if (nome == "" || email == "" || senha == "") {
         mensagem = "Preencha todos os campos para prosseguir.";
-        divVerificaoDeConta.innerHTML = mensagem;
+        divVerificacaoDeConta.innerHTML = mensagem;
         return;
     }
 
@@ -79,5 +79,5 @@ function verificarCriacaoDeConta() {
     }
     else {
         mensagem = "Não foi possível cadastrar sua conta. Tente novamente.";
-    } divVerificaoDeConta.innerHTML = mensagem;
+    } divVerificacaoDeConta.innerHTML = mensagem;
 }
