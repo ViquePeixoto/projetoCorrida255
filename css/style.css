@@ -10,8 +10,7 @@
     --corDeFundoPadrao: #000000;
     --corDeTextoPadrao: #ffffff;
     --corDecoracao1: #c9041f;
-
-    overflow: auto;
+    
     scrollbar-width: none;
 }
 
@@ -22,15 +21,11 @@
 /* CLASSES E CONFIGURAÇÕES COMPARTILHADAS ENTRE AS PÁGINAS HTML */
 /* Classe para configurações mais gerais do body */
 body {
-  overflow-y: scroll;
-}
-body.rolando .sideBar::before {
-  transform: translateY(calc(-50px + var(--scroll-position, 0px)));
+  overflow: none;
 }
 .corpoPrincipal {
-    background-image: url(backgroundIndex.png);
-    background-size: cover;
-    background-repeat: no-repeat;
+    background-image: url(../css/imagensBG/homeBG.png);
+    background-size: initial;
     background-position: center top;
     background-color: var(--corDecoracao1);
     
@@ -50,6 +45,7 @@ body.rolando .sideBar::before {
     width: 150px;
     height: 100vh;
     margin: 10px;
+    border-radius: 15px 15px 0px 0px;
 
     display: flex;
     flex-direction: column;
@@ -66,7 +62,7 @@ body.rolando .sideBar::before {
     left: 0;
     width: 100%;
     height: 200%;
-    background-image: url('./sideBarOverlay.png');
+    background-image: url('../css/imagensOverlay/sidebarOverlay.png');
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center top;
@@ -152,9 +148,9 @@ body.rolando .sideBar::before {
     overflow: hidden;
 }
 .slideshowCaixa {
-    background-image: url(../css/contextoOverlay.png);
-    background-repeat: no-repeat;
+    background-image: url(../css/imagensOverlay/contextoOverlay.png);
     background-size: cover;
+    background-repeat: no-repeat;
     display: flex;
     align-items: center;
     position: relative;

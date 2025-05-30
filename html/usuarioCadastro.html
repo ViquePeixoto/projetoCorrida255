@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body class="corpoPrincipal">
+    <section id="secaoSideBar" class="sideBar container">
+        <a href="../html/visitanteTorneio.html">
+            <i class="fas fa-flag-checkered" title="Torneios"></i>
+        </a>
+
+        <a href="../html/usuarioRanking.html">
+            <i class="fas fa-person-running" title="Corredores"></i>
+        </a>
+
+        <a href="../html/usuarioLogin.html">
+            <i class="fas fa-warehouse" title="Login"></i>
+        </a>
+    </section>
+    
+    
+    
+    <section id="secaoCadastro" class="secaoCadastro container">
+        <input oninput="validarNome()" type="text" id="inputNome" placeholder="Insira o seu nome." class="entradas">
+        <br><br>
+        
+        <input oninput="validarEmail()" type="email" id="inputEmail" placeholder="Insira o seu e-mail." class="entradas">
+        <br><br>
+        
+        <input oninput="validarSenha()" type="text" id="inputSenha" placeholder="Insira a sua senha." class="entradas">
+        <br><br>
+        
+        <button onclick="verificarCriacaoDeConta()">Criar conta</button>
+        
+        <div id="divVerificacaoDeConta"></div>
+    </section>
+    
+
+
+    <div class="barraRolante">
+        <span id="spanFlavorText"></span>
+    </div>
+</body>
+</html>
+<script src="../script/scriptUniversais/barra_rolante.js"></script>
