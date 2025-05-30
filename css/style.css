@@ -206,7 +206,7 @@ input {
 
 
 
-.secaoPrincipal {
+.secaoPrincipalCadastro {
     display: flex;
     align-items: flex-end;
     justify-content: center;
@@ -232,13 +232,13 @@ input {
     flex-direction: column;
     align-items: flex-start;
     justify-content: center;
+    cursor: default;
 }
 .secaoCadastro a {
     color: var(--corDeTextoPadrao);
     text-decoration: none;
     margin-top: 10px;
 }
-
 .entradas {
     width: 400px;
     padding: 15px;
@@ -264,6 +264,65 @@ input {
     cursor: pointer;
 }
 #divVerificacaoDeConta {
+    align-items: center;
+    position: absolute;
+    right: 60px;
+    top: 50%;
+    color: var(--corDeTextoPadrao);
+    font-size: 20px;
+    
+    width: 300px;
+}
+
+
+
+
+
+.secaoPrincipalLogin {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    position: relative;
+}
+.secaoLogin {
+    margin-top: 30px;
+    margin-left: 100px;
+    padding: 30px;  
+    
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    justify-content: center;
+}
+.secaoLogin p {
+    font-size: 20px;
+    margin-left: 0;
+    padding: 5px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    cursor: default;
+}
+.secaoLogin a {
+    color: var(--corDeTextoPadrao);
+    text-decoration: none;
+    margin-top: 10px;
+}
+#botaoEntrarNaConta {
+    align-self: center;
+    width: 50vh;
+    margin-top: 15px;
+    padding: 15px 0px;
+    font-size: 16px;
+    border: none;
+    border-radius: 8px;
+    background-color: var(--corDeFundoPadrao);
+    color: #fff;
+    cursor: pointer;
+}
+#divConfirmacaoLogin {
     align-items: center;
     position: absolute;
     right: 60px;

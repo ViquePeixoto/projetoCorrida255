@@ -22,6 +22,19 @@
         </a>
     </section>
 
+    <main class="secaoPrincipalLogin">
+        <section id="secaoLogin" class="secaoLogin">
+            <p class="secaoLogin">NOME DE USUÁRIO</p>
+            <input type="text" id="inputNome" placeholder="Insira o seu nome." class="entradas">
+
+            <p class="secaoLogin">SENHA</p>
+            <input type="password" id="inputSenha" placeholder="Insira a sua senha." class="entradas">
+
+            <a href="../html/usuarioCadastro.html">Ainda não fiz uma conta.</a>
+            <button id="botaoEntrarNaConta" onclick="verificarConta()">Entrar</button>    
+        </section>
+        <div id="divConfirmacaoLogin"></div>
+    </main>
 
     <div class="barraRolante">
         <span id="spanFlavorText"></span>
@@ -29,3 +42,4 @@
 </body>
 </html>
 <script src="../script/scriptUniversais/barra_rolante.js"></script>
+<script src="../script/scriptEspecificos/loginValidacao.js"></script>
