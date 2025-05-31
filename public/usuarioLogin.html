@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -21,7 +22,7 @@
             <i class="fas fa-warehouse" title="Login"></i>
         </a>
     </section>
-    
+
     <main class="secaoPrincipal margemLogin Posicao">
 
         <section class="secaoFormulario margemLogin">
@@ -32,7 +33,7 @@
             <input type="password" id="inputSenha" placeholder="Insira a sua senha." class="inputsValidacao">
 
             <a href="./usuarioCadastro.html">Ainda não fiz uma conta.</a>
-            <button class="botaoValidacao" onclick="verificarConta()">Entrar</button>  
+            <button class="botaoValidacao" onclick="verificarConta()">Entrar</button>
 
         </section>
 
@@ -45,30 +46,32 @@
     </div>
 
 </body>
+
 </html>
 
 <script>
-function exibirMensagemLogin(texto) {
-    var divMensagem = document.getElementById("divConfirmacaoLogin");
-    divMensagem.innerHTML = texto;
+    function exibirMensagemLogin(texto) {
+        var divMensagem = document.getElementById("divConfirmacaoLogin");
+        divMensagem.innerHTML = texto;
 
-    divMensagem.classList.remove("mensagemValidacaoAtivo");
-    void divMensagem.offsetWidth;
-    divMensagem.classList.add("mensagemValidacaoAtivo");
-
-    setTimeout(function () {
         divMensagem.classList.remove("mensagemValidacaoAtivo");
-    }, 2000);
-}
+        void divMensagem.offsetWidth;
+        divMensagem.classList.add("mensagemValidacaoAtivo");
 
-function verificarConta() {
-    var nomeVar = inputNome.value.trim();
-    var senhaVar = inputSenha.value.trim();
-    
-    if (nomeVar === "" || senhaVar === "") {
-        exibirMensagemLogin("Precisa preencher todos os campos!");
-        return; }
-        
+        setTimeout(function () {
+            divMensagem.classList.remove("mensagemValidacaoAtivo");
+        }, 2000);
+    }
+
+    function verificarConta() {
+        var nomeVar = inputNome.value.trim();
+        var senhaVar = inputSenha.value.trim();
+
+        if (nomeVar === "" || senhaVar === "") {
+            exibirMensagemLogin("Precisa preencher todos os campos!");
+            return;
+        }
+
         fetch("/usuarios/autenticar", {
             method: "POST",
             headers: {
@@ -76,26 +79,32 @@ function verificarConta() {
             },
             body: JSON.stringify({
                 emailServer: nomeVar,
-                senhaServer: senhaVar }), })
+                senhaServer: senhaVar
+            }),
+        })
 
-        .then(function (resposta) {
-            if (resposta.ok) {
-                return resposta.json();
-            } else if (resposta.status === 403) {
-                throw new Error("Seu nome ou sua senha estão erradas..");
-            } else {
-                throw new Error("Erro inesperado ao tentar fazer login."); } })
-        
-        .then(function (dados) {
-            exibirMensagemLogin("Achamos sua conta! Aguarde... ");
-            setTimeout(() => {
-                window.location.href = "usuarioGaragem.html";
-            }, 2000); })
-        
-        .catch(function (erro) {
-            console.error("Erro durante o login:", erro);
-            exibirMensagemLogin(erro.message); });
-}
+            .then(function (resposta) {
+                if (resposta.ok) {
+                    return resposta.json();
+                } else if (resposta.status === 403) {
+                    throw new Error("Seu nome ou sua senha estão erradas..");
+                } else {
+                    throw new Error("Erro inesperado ao tentar fazer login.");
+                }
+            })
+
+            .then(function (dados) {
+                exibirMensagemLogin("Achamos sua conta! Aguarde... ");
+                setTimeout(() => {
+                    window.location.href = "usuarioGaragem.html";
+                }, 2000);
+            })
+
+            .catch(function (erro) {
+                console.error("Erro durante o login:", erro);
+                exibirMensagemLogin(erro.message);
+            });
+    }
 </script>
 
 <!-- JavaScript para a barra rolante. -->

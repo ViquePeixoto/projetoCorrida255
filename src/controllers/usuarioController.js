@@ -1,3 +1,5 @@
+var usuarioModel = require("../models/usuarioModel");
+
 function autenticar(req, res) {
     var email = req.body.emailServer;
     var senha = req.body.senhaServer;
@@ -5,7 +7,7 @@ function autenticar(req, res) {
     if (email == undefined) {
         res.status(400).send("Seu email está undefined!");
     } else if (senha == undefined) {
-        res.status(400).send("Sua senha está indefinida!");
+        res.status(400).send("Sua senha está undefined!");
     } else {
         usuarioModel.autenticar(email, senha)
             .then(function (resultadoAutenticar) {
@@ -17,7 +19,6 @@ function autenticar(req, res) {
                         id: resultadoAutenticar[0].id,
                         email: resultadoAutenticar[0].email,
                         nome: resultadoAutenticar[0].nome,
-                        // Nunca envie a senha no JSON em produção
                     });
                 } else if (resultadoAutenticar.length == 0) {
                     res.status(403).send("Email e/ou senha inválido(s)");
@@ -32,3 +33,32 @@ function autenticar(req, res) {
             });
     }
 }
+
+function cadastrar(req, res) {
+    var nome = req.body.nomeServer;
+    var email = req.body.emailServer;
+    var senha = req.body.senhaServer;
+
+    if (nome == undefined) {
+        res.status(400).send("Seu nome está undefined!");
+    } else if (email == undefined) {
+        res.status(400).send("Seu email está undefined!");
+    } else if (senha == undefined) {
+        res.status(400).send("Sua senha está undefined!");
+    } else {
+        usuarioModel.cadastrar(nome, email, senha)
+            .then(function (resultado) {
+                res.json(resultado);
+            })
+            .catch(function (erro) {
+                console.log(erro);
+                console.log("\nHouve um erro ao realizar o cadastro! Erro: ", erro.sqlMessage);
+                res.status(500).json(erro.sqlMessage);
+            });
+    }
+}
+
+module.exports = {
+    autenticar,
+    cadastrar
+};

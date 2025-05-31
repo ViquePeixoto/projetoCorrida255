@@ -39,6 +39,7 @@ descricaoEquipe VARCHAR(50)
 );
 
 
+
 CREATE TABLE tabelaUsuario (
 idUsuario INT PRIMARY KEY AUTO_INCREMENT,
 nomeUsuario VARCHAR(50),

@@ -1,4 +1,3 @@
-
 /* Fonte 'Lexend' do Google Fonts. */
 @import url('https://fonts.googleapis.com/css2?family=Lexend&display=swap');
 
@@ -10,7 +9,7 @@
     --corDeFundoPadrao: #000000;
     --corDeTextoPadrao: #ffffff;
     --corDecoracao1: #ac0a40;
-    
+
     scrollbar-width: none;
 }
 
@@ -29,13 +28,18 @@ body {
     margin: 0;
     padding: 0;
 
-    display: flex; }
+    display: flex;
+}
+
 button {
     color: var(--corDeTextoPadrao);
-    font-family: 'Lexend', sans-serif; }
+    font-family: 'Lexend', sans-serif;
+}
+
 input {
     color: var(--corDeTextoPadrao);
-    font-family: 'Lexend', sans-serif; }
+    font-family: 'Lexend', sans-serif;
+}
 
 
 
@@ -62,6 +66,7 @@ input {
 
     border-radius: 15px 15px 0 0;
 }
+
 .sideBar::before {
     background: url('../css/imagensOverlay/sidebarOverlay.png') no-repeat center top;
     background-size: contain;
@@ -75,6 +80,7 @@ input {
     transform: translateY(0);
     transition: transform 0.1s linear;
 }
+
 .sideBar a {
     color: var(--corDeTextoPadrao);
     font-size: 25px;
@@ -84,8 +90,10 @@ input {
     transform: scale(1);
     transition: transform 0.3s ease;
 }
+
 .sideBar a:hover {
-    transform: scale(1.8); }
+    transform: scale(1.8);
+}
 
 
 
@@ -106,6 +114,7 @@ input {
     overflow: hidden;
     padding: 0 20px;
 }
+
 .barraRolante span {
     color: var(--corDeTextoPadrao);
     font-size: 35px;
@@ -118,12 +127,20 @@ input {
 
     animation: spanFlavorTextRoll 6s linear infinite;
 }
+
 #spanFlavorText {
     transition: opacity 0.3s ease-in-out;
 }
+
 @keyframes spanFlavorTextRoll {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-100%); } }
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-100%);
+    }
+}
 
 
 
@@ -137,6 +154,7 @@ input {
     align-items: center;
     padding: 30px;
 }
+
 .slideshowCaixa {
     background: var(--corDeFundoPadrao);
     box-shadow: 0 0 10px var(--corDeFundoPadrao);
@@ -151,6 +169,7 @@ input {
 
     border-radius: 20px;
 }
+
 .slideshowTexto {
     color: inherit;
     font-size: 20px;
@@ -165,10 +184,12 @@ input {
     transform: translateX(30px);
     transition: opacity 0.3s ease, transform 0.3s ease;
 }
+
 .slideshowTexto.ativo {
     opacity: 1;
     transform: translateX(0);
 }
+
 .slideshowBotao {
     color: var(--corDeTextoPadrao);
     font-size: 30px;
@@ -181,16 +202,20 @@ input {
 
     transition: transform 0.2s ease;
 }
+
 .slideshowBotao:hover {
     transform: scale(1.5);
 }
+
 .slideshowBotao.esquerda {
     position: absolute;
     left: -30px;
 }
+
 .slideshowBotao.direita {
     position: absolute;
-    right: -30px; }
+    right: -30px;
+}
 
 
 
@@ -202,12 +227,15 @@ input {
     justify-content: center;
     position: absolute;
 }
+
 .secaoPrincipal.margemCadastro {
     margin-left: 65vh;
 }
+
 .secaoPrincipal.margemLogin {
     margin-left: 65vh;
 }
+
 .secaoFormulario {
     width: auto;
     height: 70vh;
@@ -222,12 +250,15 @@ input {
 
     position: relative;
 }
+
 .secaoFormulario.margemCadastro {
     margin-top: 30px;
 }
+
 .secaoFormulario.margemLogin {
     margin-top: 20px;
 }
+
 .secaoFormulario p {
     color: inherit;
     font-size: 20px;
@@ -240,11 +271,13 @@ input {
     justify-content: center;
     cursor: default;
 }
+
 .secaoFormulario a {
     color: var(--corDeTextoPadrao);
     text-decoration: none;
     margin-top: 10px;
 }
+
 .inputsValidacao {
     background-color: var(--corDeTextoPadrao);
     color: var(--corDecoracao1);
@@ -261,6 +294,7 @@ input {
     transition: border-color 0.3s ease;
     align-items: center;
 }
+
 .botaoValidacao {
     background-color: var(--corDeFundoPadrao);
     color: var(--corDeTextoPadrao);
@@ -277,6 +311,7 @@ input {
     align-self: center;
     cursor: pointer;
 }
+
 .mensagemValidacao {
     background-color: var(--corDeFundoPadrao);
     color: var(--corDeTextoPadrao);
@@ -294,6 +329,7 @@ input {
     transform: translateY(20px);
     transition: opacity 0.3s ease, transform 0.3s ease;
 }
+
 .mensagemValidacaoAtivo {
     opacity: 1;
     transform: translateY(0);
