@@ -39,6 +39,22 @@ descricaoEquipe VARCHAR(50)
 );
 
 
+CREATE TABLE tabelaUsuario (
+idUsuario INT PRIMARY KEY AUTO_INCREMENT,
+nomeUsuario VARCHAR(50),
+emailUsuario VARCHAR(50),
+senhaUsuario VARCHAR(50),
+fotoDePerfil VARCHAR(100),
+vitorias INT,
+fkVeiculo INT UNIQUE,
+	FOREIGN KEY (fkVeiculo) REFERENCES tabelaVeiculo(idVeiculo),
+fkEquipe INT,
+	FOREIGN KEY (fkEquipe) REFERENCES tabelaEquipe(idEquipe),
+fkLiderDeEquipe INT,
+	FOREIGN KEY (fkLiderDeEquipe) REFERENCES tabelaUsuario(idUsuario)
+);
+
+
 
 CREATE TABLE tabelaTorneio (
 idTorneio INT AUTO_INCREMENT,
@@ -47,27 +63,10 @@ tipoTorneio VARCHAR(50),
 descricaoTorneio VARCHAR(50),
 pontoDePartida VARCHAR(50),
 pontoDeChegada VARCHAR(50),
-    fkUsuario INT, FOREIGN KEY (fkUsuario) REFERENCES usuario(idUsuario),
+    fkUsuario INT, FOREIGN KEY (fkUsuario) REFERENCES tabelaUsuario(idUsuario),
 PRIMARY KEY (idTorneio, fkUsuario),
     CONSTRAINT checkTipoTorneio
-        CHECK (in ('Ladeira', 'Trick', 'Rei da Colina', 'Mata-mata em equipe', '1v1', 'Cada Um Por Si'))
-);
-
-
-
-CREATE TABLE tabelaUsuario (
-idUsuario INT PRIMARY KEY AUTO_INCREMENT,
-nomeUsuario VARCHAR(50),
-emailUsuario VARCHAR(50),
-senhaUsuario VARCHAR(50),
-fotoDePerfil VARCHAR(100),
-vitorias INT,
-    fkVeiculo INT UNIQUE,
-        FOREIGN KEY (fkVeiculo) REFERENCES tabelaVeiculo(idVeiculo),
-    fkEquipe INT,
-        FOREIGN KEY (fkEquipe) REFERENCES tabelaEquipe(idEquipe),
-    fkLiderDeEquipe INT,
-        FOREIGN KEY (fkLiderDeEquipe) REFERENCES tabelaUsuario(idUsuario)
+		CHECK (tipoTorneio IN ('Ladeira', 'Trick', 'Rei da Colina', 'Mata-mata em equipe', '1v1', 'Cada Um Por Si'))
 );
 
 

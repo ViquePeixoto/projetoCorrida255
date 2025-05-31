@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body class="corpoPrincipal">
+    <section id="secaoSideBar" class="sideBar container">
+        <a href="./visitanteTorneio.html">
+            <i class="fas fa-flag-checkered" title="Torneios"></i>
+        </a>
+
+        <a href="./usuarioRanking.html">
+            <i class="fas fa-person-running" title="Corredores"></i>
+        </a>
+
+        <a href="./usuarioLogin.html">
+            <i class="fas fa-warehouse" title="Login"></i>
+        </a>
+    </section>
+    
+    <main class="secaoPrincipal margemCadastro">
+        <section class="secaoFormulario margemCadastro">
+
+            <p>NOME DE USUÁRIO</p>
+            <input oninput="validarNome()" type="text" id="inputNome" placeholder="Insira o seu nome." class="inputsValidacao">
+            
+            <p>E-MAIL</p>
+            <input oninput="validarEmail()" type="email" id="inputEmail" placeholder="Insira o seu e-mail." class="inputsValidacao">
+
+            <p>SENHA</p>
+            <input oninput="validarSenha()" type="password" id="inputSenha" placeholder="Insira a sua senha." class="inputsValidacao">
+
+            <a href="./usuarioLogin.html">Já tenho uma conta.</a>
+            <button class="botaoValidacao" onclick="verificarCriacaoDeConta()">Criar conta</button>
+
+        </section>
+
+            <div id="divVerificacaoDeConta" class="mensagemValidacao"></div>
+    </main>
+
+    <div class="barraRolante">
+        <span id="spanFlavorText"></span>
+    </div>
+
+</body>
+</html>
+
+<!-- JavaScript para as validações de cadastro. -->
+<script>
+var listaDeSimbolosEspeciais = [
+  '.', ',', '+', '-', '_', '(',
+  '!', '@', '>', '?', '/', ')',
+  '#', '$', ':', '|', '<', '%',
+  '^', '{', '}', ';', '&', '*',
+  '=', '[', ']' ];
+
+function exibirMensagem(texto) {
+    var divVerificacao = document.getElementById("divVerificacaoDeConta");
+    divVerificacao.innerHTML = texto;
+    
+    divVerificacao.classList.remove("mensagemValidacaoAtivo");
+    void divVerificacao.offsetWidth;
+    divVerificacao.classList.add("mensagemValidacaoAtivo");
+    
+    setTimeout(function () {
+        divVerificacao.classList.remove("mensagemValidacaoAtivo");
+    }, 2000);
+}
+
+function validarNome(nome) {
+    for (var i = 0; i < nome.length; i++) {
+        if (listaDeSimbolosEspeciais.includes(nome[i])) {
+            exibirMensagem("Permitimos de tudo, mas cuidado com os símbolos especiais.");
+            return false; }
+        } return true;
+}
+
+function validarEmail(email) {
+    if (!email.includes('@')) {
+        exibirMensagem("Seu e-mail não contém um @... Ainda.");
+        return false;
+    } return true;
+}
+
+function validarSenha(senha) {
+    var contemLetraMaiuscula = false;
+    var contemLetraMinuscula = false;
+    var contemNumero = false;
+    var contemSimbolosEspeciais = false;
+    
+    for (var i = 0; i < senha.length; i++) {
+        var c = senha[i];
+        if (c >= "A" && c <= "Z") contemLetraMaiuscula = true;
+        else if (c >= "a" && c <= "z") contemLetraMinuscula = true;
+        else if (c >= "0" && c <= "9") contemNumero = true;
+        else if (listaDeSimbolosEspeciais.includes(c)) contemSimbolosEspeciais = true; }
+        
+        if (!(contemLetraMaiuscula && contemLetraMinuscula && contemNumero && contemSimbolosEspeciais)) {
+            exibirMensagem("Para sua segurança, use letras maiúsculas, minúsculas, números e símbolos.");
+            return false;
+        } return true;
+}
+
+function verificarCriacaoDeConta() {
+    var nomeVar = inputNome.value.trim();
+    var emailVar = inputEmail.value.trim();
+    var senhaVar = inputSenha.value.trim();
+    
+    if (!nomeVar || !emailVar || !senhaVar) {
+        exibirMensagem("Preencha todos os campos para prosseguir.");
+        return false; }
+
+        if (!validarNome(nomeVar) || !validarEmail(emailVar) || !validarSenha(senhaVar)) {
+            exibirMensagem("Não foi possível cadastrar sua conta. Tente novamente.");
+            return false; }
+            
+    fetch("/usuarios/cadastrar", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            nomeServer: nomeVar,
+            emailServer: emailVar,
+            senhaServer: senhaVar
+        }),
+    })
+    .then(function (resposta) {
+        console.log("resposta: ", resposta);
+        
+        if (resposta.ok) {
+            exibirMensagem("Cadastro realizado com sucesso! Redirecionando para login...");
+            
+            setTimeout(() => {
+                window.location.href = "login.html";
+            }, 2000);
+        } else {
+            throw "Houve um erro ao tentar realizar o cadastro!"; } })
+            
+            .catch(function (erro) {
+                console.error("#ERRO: " + erro);
+                exibirMensagem("Erro ao cadastrar. Tente novamente mais tarde."); });
+                return false;
+}
+</script>
+
+<!-- JavaScript para a barra rolante. -->
+<script src="../script/barra_rolante.js"></script>

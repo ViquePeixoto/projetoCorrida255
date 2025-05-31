@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body class="corpoPrincipal">
+    <section id="secaoSideBar" class="sideBar container">
+        <a href="./visitanteTorneio.html">
+            <i class="fas fa-flag-checkered" title="Torneios"></i>
+        </a>
+
+        <a href="./usuarioRanking.html">
+            <i class="fas fa-person-running" title="Corredores"></i>
+        </a>
+
+        <a href="./usuarioLogin.html">
+            <i class="fas fa-warehouse" title="Login"></i>
+        </a>
+    </section>
+    
+    <main class="secaoPrincipal margemLogin Posicao">
+
+        <section class="secaoFormulario margemLogin">
+            <p>NOME DE USUÁRIO</p>
+            <input type="text" id="inputNome" placeholder="Insira o seu nome." class="inputsValidacao">
+
+            <p>SENHA</p>
+            <input type="password" id="inputSenha" placeholder="Insira a sua senha." class="inputsValidacao">
+
+            <a href="./usuarioCadastro.html">Ainda não fiz uma conta.</a>
+            <button class="botaoValidacao" onclick="verificarConta()">Entrar</button>  
+
+        </section>
+
+        <div id="divConfirmacaoLogin" class="mensagemValidacao"></div>
+
+    </main>
+
+    <div class="barraRolante">
+        <span id="spanFlavorText"></span>
+    </div>
+
+</body>
+</html>
+
+<script>
+function exibirMensagemLogin(texto) {
+    var divMensagem = document.getElementById("divConfirmacaoLogin");
+    divMensagem.innerHTML = texto;
+
+    divMensagem.classList.remove("mensagemValidacaoAtivo");
+    void divMensagem.offsetWidth;
+    divMensagem.classList.add("mensagemValidacaoAtivo");
+
+    setTimeout(function () {
+        divMensagem.classList.remove("mensagemValidacaoAtivo");
+    }, 2000);
+}
+
+function verificarConta() {
+    var nomeVar = inputNome.value.trim();
+    var senhaVar = inputSenha.value.trim();
+    
+    if (nomeVar === "" || senhaVar === "") {
+        exibirMensagemLogin("Precisa preencher todos os campos!");
+        return; }
+        
+        fetch("/usuarios/autenticar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                emailServer: nomeVar,
+                senhaServer: senhaVar }), })
+
+        .then(function (resposta) {
+            if (resposta.ok) {
+                return resposta.json();
+            } else if (resposta.status === 403) {
+                throw new Error("Seu nome ou sua senha estão erradas..");
+            } else {
+                throw new Error("Erro inesperado ao tentar fazer login."); } })
+        
+        .then(function (dados) {
+            exibirMensagemLogin("Achamos sua conta! Aguarde... ");
+            setTimeout(() => {
+                window.location.href = "usuarioGaragem.html";
+            }, 2000); })
+        
+        .catch(function (erro) {
+            console.error("Erro durante o login:", erro);
+            exibirMensagemLogin(erro.message); });
+}
+</script>
+
+<!-- JavaScript para a barra rolante. -->
+<script src="../script/barra_rolante.js"></script>
