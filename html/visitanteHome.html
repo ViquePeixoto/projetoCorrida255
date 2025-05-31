@@ -53,5 +53,29 @@
     </div>
 </body>
 </html>
-<script src="../script/scriptEspecificos/homeSlideshow.js"></script>
-<script src="../script/scriptUniversais/barra_rolante.js"></script>
+
+<!-- JavaScript para a barra rolante. -->
+<script src="../script/barra_rolante.js"></script>
+
+<!-- JavaScript para o slideshow na home. -->
+<script>
+    var textos = document.querySelectorAll('.slideshowTexto');
+    var botaoEsquerda = document.querySelector('.slideshowBotao.esquerda');
+    var botaoDireita = document.querySelector('.slideshowBotao.direita');
+    var i = 0;
+
+    function mostrarSlide(i) {
+        textos.forEach((texto, index) => {
+            texto.classList.toggle('ativo', index === i);
+        });
+    }
+    botaoEsquerda.addEventListener('click', () => {
+        i = (i - 1 + textos.length) % textos.length;
+        mostrarSlide(i); });
+
+    botaoDireita.addEventListener('click', () => {
+        i = (i + 1) % textos.length;
+        mostrarSlide(i); });
+    
+    mostrarSlide(i);
+</script>
