@@ -1,11 +1,11 @@
 
-/* Fonte 'Lexend' do Google Fonts */
+/* Fonte 'Lexend' do Google Fonts. */
 @import url('https://fonts.googleapis.com/css2?family=Lexend&display=swap');
 
-/* Biblioteca para os icones do site */
+/* Biblioteca 'Font Awesome' */
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css');
 
-/* Variaveis universais para o site */
+/* Variáveis universais para o site. */
 :root {
     --corDeFundoPadrao: #000000;
     --corDeTextoPadrao: #ffffff;
@@ -17,61 +17,58 @@
 
 
 
-
-/* CLASSES E CONFIGURAÇÕES COMPARTILHADAS ENTRE AS PÁGINAS HTML */
-/* Classe para configurações mais gerais do body */
+/* Configurações gerais. */
 body {
     background-image: url(../css/imagensBG/homeBG.png);
     background-size: initial;
     background-position: top;
     background-color: var(--corDecoracao1);
-    
+    color: var(--corDeTextoPadrao);
+    font-family: 'Lexend', sans-serif;
+
     margin: 0;
     padding: 0;
 
-    display: flex;
-    font-family: 'Lexend', sans-serif;
-    color: var(--corDeTextoPadrao);
-}
+    display: flex; }
 button {
-    font-family: 'Lexend', sans-serif;
     color: var(--corDeTextoPadrao);
-}
+    font-family: 'Lexend', sans-serif; }
 input {
-    font-family: 'Lexend', sans-serif;
     color: var(--corDeTextoPadrao);
-}
+    font-family: 'Lexend', sans-serif; }
 
 
 
 
-
-/* Configurações da sidebar */
+/* Configurações para a sidebar. */
 .sideBar {
     background-color: var(--corDecoracao1);
+
     width: 150px;
     height: 100vh;
     margin: 10px;
-    border-radius: 15px 15px 0px 0px;
+    padding-top: 0;
 
-    align-items: center;
     position: fixed;
-    overflow: hidden;
-    justify-content: start;
-    
+    top: 0;
+    left: 0;
+
     display: flex;
-    flex-direction: column; 
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    overflow: hidden;
+
+    border-radius: 15px 15px 0 0;
 }
 .sideBar::before {
-    background-image: url('../css/imagensOverlay/sidebarOverlay.png');
+    background: url('../css/imagensOverlay/sidebarOverlay.png') no-repeat center top;
     background-size: contain;
-    background-position: center top;
-    background-repeat: no-repeat;
-
     content: '';
+
     width: 100%;
     height: 200%;
-    
+
     position: absolute;
 
     transform: translateY(0);
@@ -80,100 +77,90 @@ input {
 .sideBar a {
     color: var(--corDeTextoPadrao);
     font-size: 25px;
+
     margin: 55px;
 
     transform: scale(1);
-    transition: transform 0.4s ease;
+    transition: transform 0.3s ease;
 }
 .sideBar a:hover {
-    transform: scale(1.80);
-}
+    transform: scale(1.8); }
 
 
 
 
-
-/* Barra rolante no fundo da pagina */
+/* Configurações para a barra rolante com flavor text. */
 .barraRolante {
     background-color: var(--corDeFundoPadrao);
-    bottom: 30px;
-    
+
     width: 100vw;
     height: 50px;
-    
-    align-items: center;
+
+    bottom: 30px;
+
     position: fixed;
-    overflow: hidden;
-    
     display: flex;
+    align-items: center;
+    overflow: hidden;
     padding: 0 20px;
 }
 .barraRolante span {
     color: var(--corDeTextoPadrao);
     font-size: 35px;
-    cursor: default;
     font-weight: 600;
-    white-space: nowrap;
-    
+    cursor: default;
+
     display: inline-block;
+    white-space: nowrap;
     padding-left: 100%;
-    
+
     animation: spanFlavorTextRoll 6s linear infinite;
 }
 #spanFlavorText {
     transition: opacity 0.3s ease-in-out;
 }
 @keyframes spanFlavorTextRoll {
-    0% { transform: translateX(0);
-    }
-    100% { transform: translateX(-100%);
-    }
-}
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-100%); } }
 
 
 
 
-
-/* CLASSES E CONFIGURAÇÕES PARA A PÁGINA INDEX */
-/* Slideshow para o contexto no index */
+/* Configurações para o slideshow de introdução ao site. */
 #secaoContexto {
-    margin-left: 80vh;
     height: 90vh;
+    margin-left: 80vh;
 
-    align-items: center;
-    
     display: flex;
+    align-items: center;
     padding: 30px;
 }
 .slideshowCaixa {
-    background-image: url(../css/imagensOverlay/contextoOverlay.png);
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-color:var(--corDecoracao1);
-    border-radius: 20px;
-    
+    background: var(--corDecoracao1) url(../css/imagensOverlay/contextoOverlay.png) no-repeat center/cover;
+
     width: 700px;
     height: 300px;
 
+    display: flex;
     align-items: center;
     position: relative;
-    
-    display: flex;
     padding: 10px 30px;
+
+    border-radius: 20px;
 }
 .slideshowTexto {
-    opacity: 0;
+    color: inherit;
     font-size: 20px;
     font-weight: 600;
-    
-    width: 700px;
     line-height: 1.5;
     text-align: justify;
-    
-    position: absolute;
 
+    width: 700px;
+
+    position: absolute;
+    opacity: 0;
     transform: translateX(30px);
-    transition: opacity 0.2s ease, transform 0.2s ease;
+    transition: opacity 0.3s ease, transform 0.3s ease;
 }
 .slideshowTexto.ativo {
     opacity: 1;
@@ -181,15 +168,14 @@ input {
 }
 .slideshowBotao {
     color: var(--corDeTextoPadrao);
-    background: none;
     font-size: 30px;
+    background: none;
     border: none;
-    
+
     cursor: pointer;
-    
     padding: 20px;
     z-index: 5;
-    
+
     transition: transform 0.2s ease;
 }
 .slideshowBotao:hover {
@@ -201,32 +187,52 @@ input {
 }
 .slideshowBotao.direita {
     position: absolute;
-    right: -30px;
-}
+    right: -30px; }
 
 
 
 
-.secaoPrincipalCadastro {
-    margin-left: 65vh;
+/* Configurações para o formulário de cadastro e login. */
+.secaoPrincipal {
     display: flex;
     align-items: flex-end;
     justify-content: center;
+
     position: relative;
 }
-.secaoCadastro {
-    margin-top: 20px;
-    margin-left: 100px;
+.secaoPrincipal.Posicao {
+    position: absolute;
+}
+.secaoPrincipal.margemCadastro {
+    margin-left: 65vh;
+}
+.secaoPrincipal.margemLogin {
+    margin-left: 400px;
+}
+.secaoFormulario {
+    width: auto;
+    height: 70vh;
+
+    margin-left: 80px;
     padding: 30px;
-    height: 70vh;  
-    
+
     display: flex;
     flex-direction: column;
-    position: relative;
+    align-items: start;
     justify-content: center;
+
+    position: relative;
 }
-.secaoCadastro p {
+.secaoFormulario.margemCadastro {
+    margin-top: 30px;
+}
+.secaoFormulario.margemLogin {
+    margin-top: 20px;
+}
+.secaoFormulario p {
+    color: inherit;
     font-size: 20px;
+
     margin-left: 0;
     padding: 5px;
 
@@ -236,102 +242,61 @@ input {
     justify-content: center;
     cursor: default;
 }
-.secaoCadastro a {
+.secaoFormulario a {
     color: var(--corDeTextoPadrao);
     text-decoration: none;
     margin-top: 10px;
 }
-.entradas {
+.inputsValidacao {
+    background-color: var(--corDeTextoPadrao);
+    color: var(--corDeFundoPadrao);
+
     width: 400px;
     padding: 15px;
+
     font-size: 15px;
+
     border: 2px solid var(--corDecoracao1);
     border-radius: 10px;
     outline: none;
-    background-color: var(--corDeTextoPadrao);
-    color: var(--corDeFundoPadrao);
+
     transition: border-color 0.3s ease;
     align-items: center;
 }
-#botaoCriarConta {
-    align-self: center;
-    width: 50vh;
-    margin-top: 15px;
-    padding: 15px 0px;
-    font-size: 16px;
-    border: none;
-    border-radius: 8px;
+.botaoValidacao {
     background-color: var(--corDeFundoPadrao);
     color: #fff;
-    cursor: pointer;
-}
-#divVerificacaoDeConta {
-    align-items: center;
-    position: absolute;
-    right: 60px;
-    top: 50%;
-    color: var(--corDeTextoPadrao);
-    font-size: 20px;
-    
-    width: 300px;
-}
 
-
-
-
-
-.secaoPrincipalLogin {
-    margin-left: 400px;
-    display: flex;
-    align-items: flex-end;
-    justify-content: center;
-    position: absolute;
-}
-.secaoLogin {
-    margin-top: 30px;
-    margin-left: 100px;
-    padding: 30px;  
-    
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    justify-content: center;
-}
-.secaoLogin p {
-    font-size: 20px;
-    margin-left: 0;
-    padding: 5px;
-
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
-    cursor: default;
-}
-.secaoLogin a {
-    color: var(--corDeTextoPadrao);
-    text-decoration: none;
-    margin-top: 10px;
-}
-#botaoEntrarNaConta {
-    align-self: center;
     width: 50vh;
-    margin-top: 15px;
     padding: 15px 0px;
+    margin-top: 15px;
+
     font-size: 16px;
+
     border: none;
     border-radius: 8px;
-    background-color: var(--corDeFundoPadrao);
-    color: #fff;
+
+    align-self: center;
     cursor: pointer;
 }
-#divConfirmacaoLogin {
-    align-items: center;
-    position: absolute;
-    right: 60px;
-    top: 50%;
+.mensagemValidacao {
     color: var(--corDeTextoPadrao);
     font-size: 20px;
-    
+
     width: 300px;
+    right: 60px;
+    top: 50%;
+
+    align-items: center;
+
+    opacity: 0;
+    transform: translateY(20px);
+    animation: mensagemValidacaoToast 0.3s ease forwards;
 }
+@keyframes mensagemValidacaoToast {
+    0% {
+        transform: translateY(20px);
+        opacity: 0;
+    } 100% {
+        transform: translateY(0);
+        opacity: 1; } }

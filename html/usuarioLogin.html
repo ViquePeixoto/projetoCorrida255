@@ -8,6 +8,7 @@
 </head>
 
 <body class="corpoPrincipal">
+
     <section id="secaoSideBar" class="sideBar container">
         <a href="../html/visitanteTorneio.html">
             <i class="fas fa-flag-checkered" title="Torneios"></i>
@@ -21,31 +22,35 @@
             <i class="fas fa-warehouse" title="Login"></i>
         </a>
     </section>
+    
+    <main class="secaoPrincipal margemLogin Posicao">
 
-    <main class="secaoPrincipalLogin">
-        <section id="secaoLogin" class="secaoLogin">
-            <p class="secaoLogin">NOME DE USUÁRIO</p>
-            <input type="text" id="inputNome" placeholder="Insira o seu nome." class="entradas">
+        <section class="secaoFormulario margemLogin">
+            <p>NOME DE USUÁRIO</p>
+            <input type="text" id="inputNome" placeholder="Insira o seu nome." class="inputsValidacao">
 
-            <p class="secaoLogin">SENHA</p>
-            <input type="password" id="inputSenha" placeholder="Insira a sua senha." class="entradas">
+            <p>SENHA</p>
+            <input type="password" id="inputSenha" placeholder="Insira a sua senha." class="inputsValidacao">
 
             <a href="../html/usuarioCadastro.html">Ainda não fiz uma conta.</a>
-            <button id="botaoEntrarNaConta" onclick="verificarConta()">Entrar</button>    
+            <button class="botaoValidacao" onclick="verificarConta()">Entrar</button>  
+
         </section>
-        <div id="divConfirmacaoLogin"></div>
+
+        <div id="divConfirmacaoLogin" class="mensagemValidacao"></div>
+
     </main>
 
     <div class="barraRolante">
         <span id="spanFlavorText"></span>
     </div>
+
 </body>
 </html>
+<!-- JavaScript para as validações de login.-->
+<script>
+
+</script>
 
 <!-- JavaScript para a barra rolante. -->
 <script src="../script/barra_rolante.js"></script>
-
-<!-- JavaScript para as validações de login.-->
- <script>
-
- </script>

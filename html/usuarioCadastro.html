@@ -25,31 +25,32 @@
         </a>
     </section>
     
-    <main class="secaoPrincipalCadastro">
-        <section id="secaoCadastro" class="secaoCadastro">
-            <p class="secaoCadastro">NOME DE USUÁRIO</p>
-            <input oninput="validarNome()" type="text" id="inputNome" placeholder="Insira o seu nome." class="entradas">
+    <main class="secaoPrincipal margemCadastro">
+        <section class="secaoFormulario margemCadastro">
+
+            <p>NOME DE USUÁRIO</p>
+            <input oninput="validarNome()" type="text" id="inputNome" placeholder="Insira o seu nome." class="inputsValidacao">
             
-            <p class="secaoCadastro">E-MAIL</p>
-            <input oninput="validarEmail()" type="email" id="inputEmail" placeholder="Insira o seu e-mail." class="entradas">
-            
-            <p class="secaoCadastro">SENHA</p>
-            <input oninput="validarSenha()" type="password" id="inputSenha" placeholder="Insira a sua senha." class="entradas">
+            <p>E-MAIL</p>
+            <input oninput="validarEmail()" type="email" id="inputEmail" placeholder="Insira o seu e-mail." class="inputsValidacao">
+
+            <p>SENHA</p>
+            <input oninput="validarSenha()" type="password" id="inputSenha" placeholder="Insira a sua senha." class="inputsValidacao">
 
             <a href="../html/usuarioLogin.html">Já tenho uma conta.</a>
-            <button id="botaoCriarConta" onclick="verificarCriacaoDeConta()">Criar conta</button>    
+            <button class="botaoValidacao" onclick="verificarCriacaoDeConta()">Criar conta</button>
+
         </section>
-        <div id="divVerificacaoDeConta"></div>
+
+            <div id="divVerificacaoDeConta" class="mensagemValidacao"></div>
     </main>
-s
+
     <div class="barraRolante">
         <span id="spanFlavorText"></span>
     </div>
+
 </body>
 </html>
-
-<!-- JavaScript para a barra rolante. -->
-<script src="../script/barra_rolante.js"></script>
 
 <!-- JavaScript para as validações de cadastro. -->
 <script>
@@ -134,4 +135,10 @@ function verificarCriacaoDeConta() {
         mensagem = "Não foi possível cadastrar sua conta. Tente novamente.";
     } divVerificacaoDeConta.innerHTML = mensagem;
 }
+
+var div = document.getElementById("divVerificacaoDeConta");
+div.classList.add("mensagemValidacao");
 </script>
+
+<!-- JavaScript para a barra rolante. -->
+<script src="../script/barra_rolante.js"></script>
