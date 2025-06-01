@@ -49,62 +49,89 @@
 
 </html>
 
+<!-- JavaScript para a validação de login. -->
 <script>
-    function exibirMensagemLogin(texto) {
-        var divMensagem = document.getElementById("divConfirmacaoLogin");
-        divMensagem.innerHTML = texto;
+var listaDeSimbolosEspeciais = [
+'.', ',', '+', '-', '_', '(',
+'!', '@', '>', '?', '/', ')',
+'#', '$', ':', '|', '<', '%',
+'^', '{', '}', ';', '&', '*',
+'=', '[', ']'];
+    
+function exibirMensagemLogin(texto) {
+    var divConfirmacao = document.getElementById("divConfirmacaoLogin");
+    divConfirmacao.innerHTML = texto;
 
-        divMensagem.classList.remove("mensagemValidacaoAtivo");
-        void divMensagem.offsetWidth;
-        divMensagem.classList.add("mensagemValidacaoAtivo");
+    divConfirmacao.classList.remove("mensagemValidacaoAtivo");
+    void divConfirmacao.offsetWidth;
+    divConfirmacao.classList.add("mensagemValidacaoAtivo");
 
-        setTimeout(function () {
-            divMensagem.classList.remove("mensagemValidacaoAtivo");
-        }, 2000);
+    setTimeout(function () {
+        divConfirmacao.classList.remove("mensagemValidacaoAtivo");
+    }, 3000);
+}
+
+function validarNomeLogin(nome) {
+    for (var i = 0; i < nome.length; i++) {
+        if (listaDeSimbolosEspeciais.includes(nome[i])) {
+            exibirMensagemLogin("Cuidado com símbolos especiais no nome.");
+            return false; }
+        } return true;
+}
+
+function validarSenhaLogin(senha) {
+    if (!senha || senha.length < 6) {
+        exibirMensagemLogin("Senha inválida ou muito curta.");
+        return false;
+    } return true;
+}
+
+function verificarConta() {
+    var nomeVar = document.getElementById("inputNome").value.trim();
+    var senhaVar = document.getElementById("inputSenha").value.trim();
+
+    if (!nomeVar || !senhaVar) {
+        exibirMensagemLogin("Preencha nome e senha para entrar.");
+        return false;
     }
-
-    function verificarConta() {
-        var nomeVar = inputNome.value.trim();
-        var senhaVar = inputSenha.value.trim();
-
-        if (nomeVar === "" || senhaVar === "") {
-            exibirMensagemLogin("Precisa preencher todos os campos!");
-            return;
+    if (!validarNomeLogin(nomeVar) || !validarSenhaLogin(senhaVar)) {
+        return false; }
+        
+fetch("/usuarios/autenticar", {
+    method: "POST",
+    headers: {
+        "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+        nomeServer: nomeVar,
+        senhaServer: senhaVar })
+    })
+    .then(resposta => {
+        if (resposta.ok) {
+            return resposta.json();
         }
-
-        fetch("/usuarios/autenticar", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                emailServer: nomeVar,
-                senhaServer: senhaVar
-            }),
-        })
-
-            .then(function (resposta) {
-                if (resposta.ok) {
-                    return resposta.json();
-                } else if (resposta.status === 403) {
-                    throw new Error("Seu nome ou sua senha estão erradas..");
-                } else {
-                    throw new Error("Erro inesperado ao tentar fazer login.");
-                }
-            })
-
-            .then(function (dados) {
-                exibirMensagemLogin("Achamos sua conta! Aguarde... ");
-                setTimeout(() => {
-                    window.location.href = "usuarioGaragem.html";
-                }, 2000);
-            })
-
-            .catch(function (erro) {
-                console.error("Erro durante o login:", erro);
-                exibirMensagemLogin(erro.message);
-            });
-    }
+        else if (resposta.status == 403) {
+            throw "Esse login não existe!";
+        }
+        else {
+            throw "Encontramos um erro no cadastro. Tente mais tarde."; }
+    })
+    .then(dados => {
+        sessionStorage.setItem("idUsuario", dados.id);
+        sessionStorage.setItem("nomeUsuario", dados.nome);
+        sessionStorage.setItem("emailUsuario", dados.email);
+            
+        exibirMensagemLogin("Login realizado com sucesso! Redirecionando...");
+        setTimeout(() => {
+            window.location.href = "../usuarioGaragem.html"; }, 2000);
+    })
+    .catch(erro => {
+        console.error("Erro no login:", erro);
+            
+        exibirMensagemLogin(erro);
+    });
+    return false;
+}
 </script>
 
 <!-- JavaScript para a barra rolante. -->

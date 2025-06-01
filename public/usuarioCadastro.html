@@ -56,114 +56,114 @@
 
 <!-- JavaScript para as validações de cadastro. -->
 <script>
-    var listaDeSimbolosEspeciais = [
-        '.', ',', '+', '-', '_', '(',
-        '!', '@', '>', '?', '/', ')',
-        '#', '$', ':', '|', '<', '%',
-        '^', '{', '}', ';', '&', '*',
-        '=', '[', ']'];
+var listaDeSimbolosEspeciais = [
+    '.', ',', '+', '-', '_', '(',
+    '!', '@', '>', '?', '/', ')',
+    '#', '$', ':', '|', '<', '%',
+    '^', '{', '}', ';', '&', '*',
+    '=', '[', ']'];
 
-    function exibirMensagem(texto) {
-        var divVerificacao = document.getElementById("divVerificacaoDeConta");
-        divVerificacao.innerHTML = texto;
+function exibirMensagem(verificacaoMensagem) {
+    var divVerificacao = document.getElementById("divVerificacaoDeConta");
+    divVerificacao.innerHTML = verificacaoMensagem;
 
+    divVerificacao.classList.remove("mensagemValidacaoAtivo");
+    void divVerificacao.offsetWidth;
+    divVerificacao.classList.add("mensagemValidacaoAtivo");
+
+    setTimeout(function () {
         divVerificacao.classList.remove("mensagemValidacaoAtivo");
-        void divVerificacao.offsetWidth;
-        divVerificacao.classList.add("mensagemValidacaoAtivo");
+    }, 2000);
+}
 
-        setTimeout(function () {
-            divVerificacao.classList.remove("mensagemValidacaoAtivo");
-        }, 2000);
-    }
+function validarNome() {
+    var nome = inputNome.value;
 
-    function validarNome(nome) {
-        var nome = inputNome.value;
-
-        for (var i = 0; i < nome.length; i++) {
-            if (listaDeSimbolosEspeciais.includes(nome[i])) {
-                exibirMensagem("Permitimos de tudo, mas cuidado com os símbolos especiais.");
-                return false;
-            }
+    for (var i = 0; i < nome.length; i++) {
+        if (listaDeSimbolosEspeciais.includes(nome[i])) {
+            exibirMensagem("Permitimos de tudo, mas cuidado com os símbolos especiais.");
+            return false; }
         } return true;
-    }
+}
 
-    function validarEmail(email) {
-        var email = inputEmail.value;
+function validarEmail() {
+    var email = inputEmail.value;
 
-        if (!email.includes('@')) {
-            exibirMensagem("Seu e-mail não contém um @... Ainda.");
-            return false;
-        } return true;
-    }
+    if (!email.includes('@')) {
+        exibirMensagem("Seu e-mail não contém um @... Ainda.");
+        return false;
+    } return true;
+}
 
-    function validarSenha(senha) {
-        var senha = inputSenha.value;
-        var contemLetraMaiuscula = false;
-        var contemLetraMinuscula = false;
-        var contemNumero = false;
-        var contemSimbolosEspeciais = false;
+function validarSenha() {
+    var senha = inputSenha.value;
+    var contemLetraMaiuscula = false;
+    var contemLetraMinuscula = false;
+    var contemNumero = false;
+    var contemSimbolosEspeciais = false;
 
-        for (var i = 0; i < senha.length; i++) {
-            var c = senha[i];
-            if (c >= "A" && c <= "Z") contemLetraMaiuscula = true;
-            else if (c >= "a" && c <= "z") contemLetraMinuscula = true;
-            else if (c >= "0" && c <= "9") contemNumero = true;
-            else if (listaDeSimbolosEspeciais.includes(c)) contemSimbolosEspeciais = true;
+    for (var i = 0; i < senha.length; i++) {
+        var senhaAtual = senha[i];
+        
+        if (senhaAtual >= "A" && senhaAtual <= "Z") {
+            contemLetraMaiuscula = true;
         }
-
+        else if (senhaAtual >= "a" && senhaAtual <= "z") {
+            contemLetraMinuscula = true;
+        }
+        else if (senhaAtual >= "0" && senhaAtual <= "9") {
+            contemNumero = true;
+        }
+        else if (listaDeSimbolosEspeciais.includes(senhaAtual)) {
+            contemSimbolosEspeciais = true; }
+        
         if (!(contemLetraMaiuscula && contemLetraMinuscula && contemNumero && contemSimbolosEspeciais)) {
             exibirMensagem("Para sua segurança, use letras maiúsculas, minúsculas, números e símbolos.");
             return false;
         } return true;
     }
+}
 
     function verificarCriacaoDeConta() {
-        var nomeVar = inputNome.value.trim();
-        var emailVar = inputEmail.value.trim();
-        var senhaVar = inputSenha.value.trim();
+    var nomeVar = inputNome.value.trim();
+    var emailVar = inputEmail.value.trim();
+    var senhaVar = inputSenha.value.trim();
 
-        if (!nomeVar || !emailVar || !senhaVar) {
-            exibirMensagem("Preencha todos os campos para prosseguir.");
-            return false;
-        }
-
-        if (!validarNome(nomeVar) || !validarEmail(emailVar) || !validarSenha(senhaVar)) {
-            exibirMensagem("Não foi possível cadastrar sua conta. Tente novamente.");
-            return false;
-        }
-
-        fetch("/usuarios/cadastrar", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                nomeServer: nomeVar,
-                emailServer: emailVar,
-                senhaServer: senhaVar
-            }),
-        })
-            .then(function (resposta) {
-                console.log("resposta: ", resposta);
-
-                if (resposta.ok) {
-                    exibirMensagem("Cadastro realizado com sucesso! Redirecionando para login...");
-
-                    setTimeout(() => {
-                        window.location.href = "login.html";
-                    }, 2000);
-                } else {
-                    throw "Houve um erro ao tentar realizar o cadastro!";
-                }
-            })
-
-            .catch(function (erro) {
-                console.error("#ERRO: " + erro);
-                exibirMensagem("Erro ao cadastrar. Tente novamente mais tarde.");
-            });
+    if (nomeVar == "" || emailVar == "" || senhaVar == "") {
+        exibirMensagem("Sem campos vazios!");
         return false;
     }
+    if (!validarNome() || !validarEmail() || !validarSenha()) {
+        return false; }
+
+    fetch("/usuarios/cadastrar", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            nomeServer: nomeVar,
+            emailServer: emailVar,
+            senhaServer: senhaVar }),
+    })
+    .then(function (resposta) {
+        if (resposta.ok) {
+            exibirMensagem("Cadastro feito, agora é só fazer login...");
+            setTimeout(() => {
+                window.location = "./usuarioLogin.html"; }, 2000);
+        } else {
+            resposta.text().then(texto => {
+                exibirMensagem("Erro ao cadastrar: " + texto);
+                console.error("Erro de resposta:", texto); }); }
+    })
+    .catch(function (erro) {
+        exibirMensagem("Erro inesperado. Tente novamente mais tarde.");
+        console.error("Erro no fetch:", erro);
+    });
+    return false;
+}
 </script>
 
 <!-- JavaScript para a barra rolante. -->
 <script src="../script/barra_rolante.js"></script>
+

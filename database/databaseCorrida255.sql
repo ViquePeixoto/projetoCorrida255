@@ -34,7 +34,7 @@ estiloVeiculo VARCHAR(50),
 
 CREATE TABLE tabelaEquipe (
 idEquipe INT PRIMARY KEY AUTO_INCREMENT,
-nomeEquipe VARCHAR(50),
+nomeEquipe VARCHAR(50) UNIQUE,
 descricaoEquipe VARCHAR(50)
 );
 
@@ -42,8 +42,8 @@ descricaoEquipe VARCHAR(50)
 
 CREATE TABLE tabelaUsuario (
 idUsuario INT PRIMARY KEY AUTO_INCREMENT,
-nomeUsuario VARCHAR(50),
-emailUsuario VARCHAR(50),
+nomeUsuario VARCHAR(50) UNIQUE,
+emailUsuario VARCHAR(50) UNIQUE,
 senhaUsuario VARCHAR(50),
 fotoDePerfil VARCHAR(100),
 vitorias INT,
@@ -55,6 +55,7 @@ fkLiderDeEquipe INT,
 	FOREIGN KEY (fkLiderDeEquipe) REFERENCES tabelaUsuario(idUsuario)
 );
 
+ALTER TABLE tabelaUsuario AUTO_INCREMENT = 1;
 
 
 CREATE TABLE tabelaTorneio (
@@ -79,3 +80,6 @@ idTorneio INT,
     FOREIGN KEY (idTorneio) REFERENCES tabelaTorneio(idTorneio),
 PRIMARY KEY (idUsuario, idTorneio)
 );
+
+SELECT * FROM tabelaUsuario;
+DELETE FROM tabelaUsuario WHERE idUsuario = 2;
