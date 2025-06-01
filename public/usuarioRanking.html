@@ -5,10 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Corredores</title>
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
 <body class="corpoPrincipal">
+
     <section id="secaoSideBar" class="sideBar container">
         <a href="./visitanteTorneio.html">
             <i class="fas fa-flag-checkered" title="Torneios"></i>
@@ -23,43 +24,188 @@
         </a>
     </section>
 
-
-
-    <section id="secaoTop3">
-        <div id="corredorOuro">
-            <canvas id="dashboardCorredor">
-            </canvas>
-        </div>
-
-        <div id="corredorPrata">
-            <canvas id="dashboardCorredor">
-            </canvas>
-        </div>
-
-        <div id="corredorBronze">
-            <canvas id="dashboardCorredor">
-            </canvas>
-        </div>
+    <section id="caixaRanking">
     </section>
-
-    <section id="secaoCorredores">
-        <div id="perfilCorredor">
-        </div>
-    </section>
-
-
 
     <div class="barraRolante">
         <span id="spanFlavorText"></span>
     </div>
-</body>
 
+</body>
 </html>
 
-<!-- JavaScript para o ranking de corredores. -->
+<!-- Barra rolante. -->
+<script src="../public/script/barra_rolante.js"></script>
+
+<!-- Source para o Chart.js. -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<!-- Ranking. -->
 <script>
+var listaDeCorredores = [
+  {
+    nome: "WH1SP3RdotKITTY",
+    bio: "m3ow, m3ow, m3ow!",
+    foto: "../public/css/fotosRanking/whisperFoto.png",
+    desempenho: [14, 11, 17, 20, 9],
+    categorias: [22, 18, 30, 10, 20]
+  },
+  {
+    nome: "☆ ★ putiuquim ★ ☆",
+    bio: "EXAGERADO, JOGADO AOS SEUS PÉS",
+    foto: "../public/css/fotosRanking/puchFoto.jpg",
+    desempenho: [16, 6, 13, 11, 15],
+    categorias: [15, 25, 20, 18, 22]
+  },
+  {
+    nome: "atomsKing",
+    bio: "It was rigged from the start.",
+    foto: "../public/css/fotosRanking/sanxFoto.jpg",
+    desempenho: [18, 9, 7, 19, 12],
+    categorias: [20, 30, 15, 25, 10]
+  },
+  {
+    nome: "Lazure42",
+    bio: "se alguém ligou... acenda o farol, acenda o farol.",
+    foto: "../public/css/fotosRanking/lazFoto.jpg",
+    desempenho: [10, 15, 6, 18, 13],
+    categorias: [18, 12, 24, 16, 30]
+  },
+  {
+    nome: "the_monkey_prince",
+    bio: "thank you!! good bye!!",
+    foto: "../public/css/fotosRanking/diegoFoto.jpg",
+    desempenho: [7, 14, 20, 9, 11],
+    categorias: [30, 25, 15, 10, 20]
+  },
+  {
+    nome: "Serotozaki",
+    bio: "Se de repente...",
+    foto: "../public/css/fotosRanking/taigaFoto.jpg",
+    desempenho: [12, 17, 5, 16, 8],
+    categorias: [22, 16, 12, 28, 22]
+  },
+  {
+    nome: "M&M",
+    bio: "i was the sun before it was #cool",
+    foto: "../public/css/fotosRanking/emiFoto.jpg",
+    desempenho: [13, 10, 19, 6, 15],
+    categorias: [25, 10, 30, 15, 20]
+  },
+  {
+    nome: "T-BONE // BIG DOG",
+    bio: "Essas ruas são minhas também.",
+    foto: "../public/css/fotosRanking/sparkFoto.jpg",
+    desempenho: [8, 18, 11, 7, 14],
+    categorias: [18, 22, 20, 12, 28]
+  },
+  {
+    nome: "lenaaaaaa",
+    bio: "diabrete diabretinho meu",
+    foto: "../public/css/fotosRanking/lenaFoto.jpg",
+    desempenho: [17, 6, 13, 9, 12],
+    categorias: [16, 28, 18, 12, 26]
+  },
+  {
+    nome: "Ayonoma",
+    bio: "Let's go to another Star Adventure.",
+    foto: "../public/css/fotosRanking/chonoFoto.jpg",
+    desempenho: [11, 20, 10, 5, 16],
+    categorias: [20, 25, 15, 30, 10]
+  }
+];
 
+var container = document.getElementById("caixaRanking");
+
+listaDeCorredores.forEach((corredor, i) => {
+  var corredorDiv = document.createElement("section");
+  corredorDiv.className = "caixaRanking";
+
+  corredorDiv.innerHTML = `
+    <section class="cabecalho">
+      <span class="spanNomeDoCorredor">${corredor.nome}</span>
+      <span class="spanBioDoCorredor">${corredor.bio}</span>
+    </section>
+
+    <section class="caixaCorpo">
+      <div class="caixaGrafico">
+        <canvas id="linha-${i}"></canvas>
+        <canvas id="pizza-${i}"></canvas>
+      </div>
+      <img class="renderDoPerfil" src="${corredor.foto}" alt="Foto de ${corredor.nome}">
+    </section>
+  `;
+
+  container.appendChild(corredorDiv);
+
+  plotarGraficoLinha(`linha-${i}`, corredor.desempenho);
+  plotarGraficoPizza(`pizza-${i}`, corredor.categorias);
+});
+
+function plotarGraficoLinha(idCanvas, dados) {
+  new Chart(document.getElementById(idCanvas).getContext("2d"), {
+    type: 'line',
+    data: {
+      labels: ["Corrida 1", "Corrida 2", "Corrida 3", "Corrida 4", "Corrida 5"],
+      datasets: [{
+        label: 'Desempenho',
+        data: dados,
+        backgroundColor: 'rgba(0, 123, 255, 0.2)',
+        borderColor: 'rgba(0, 123, 255, 1)',
+        borderWidth: 2,
+        fill: true,
+        tension: 0.4
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: true,
+      plugins: {
+        legend: {
+          labels: {
+            color: 'white'
+          }
+        },
+        tooltip: {
+          bodyColor: 'white'
+        }
+      },
+      scales: {
+        x: {
+          ticks: {
+            color: 'white'
+          }
+        },
+        y: {
+          ticks: {
+            color: 'white'
+          }
+        }
+      }
+    }
+  });
+}
+
+function plotarGraficoPizza(idCanvas, dados) {
+  new Chart(document.getElementById(idCanvas).getContext("2d"), {
+    type: 'pie',
+    data: {
+      labels: ['Aerodinâmica', 'Aderência', 'Adaptabilidade', 'Velocidade', 'Rodas'],
+      datasets: [{
+        label: 'Categorias',
+        data: dados,
+        backgroundColor: ['#ac0a40', '#90155a', '#6e147d', '#401f6b', '#2d2961'],
+        borderWidth: 2 }]
+    },
+    options: {
+  responsive: true,
+  maintainAspectRatio: true,
+  plugins: {
+    legend: {
+      labels: {
+        color: 'white' }
+    },
+    tooltip: {
+      bodyColor: 'white' } } } });
+}
 </script>
-
-<!-- JavaScript para a barra rolante. -->
-<script src="../script/barra_rolante.js"></script>

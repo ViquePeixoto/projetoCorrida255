@@ -16,4 +16,16 @@ console.log("Executando a instrução SQL: \n" + instrucaoSql);
 return database.executar(instrucaoSql);
 }
 
-module.exports = { autenticar, cadastrar };
+function atualizarPerfil(idUsuario, nome, email, senha, fotoDePerfil) {
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> atualizarPerfil():", idUsuario, nome, email, senha, fotoDePerfil);
+
+    const instrucaoSql = `
+        UPDATE tabelaUsuario
+        SET nomeUsuario = '${nome}', emailUsuario = '${email}', senhaUsuario = '${senha}', fotoDePerfil = '${fotoDePerfil}'
+        WHERE idUsuario = ${idUsuario};`;
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql); }
+
+module.exports = { autenticar, cadastrar, atualizarPerfil };
+

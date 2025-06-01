@@ -64,4 +64,32 @@ function cadastrar(req, res) {
                 res.status(500).json(erro.sqlMessage); }); }
 }
 
-module.exports = { autenticar, cadastrar }
+function atualizarPerfil(req, res) {
+    var idUsuario = req.body.idUsuario;
+    var nome = req.body.nomeUsuario;
+    var email = req.body.emailUsuario;
+    var senha = req.body.senhaUsuario;
+    var fotoDePerfil = req.body.fotoDePerfil;
+
+    if (idUsuario == undefined) {
+        res.status(400).send("O ID do usuário está undefined!");
+    } else if (nome == undefined) {
+        res.status(400).send("O nome está undefined!");
+    } else if (email == undefined) {
+        res.status(400).send("O email está undefined!");
+    } else if (senha == undefined) {
+        res.status(400).send("A senha está undefined!");
+    } else if (fotoDePerfil == undefined) {
+        res.status(400).send("A foto de perfil está undefined!");
+    } else {
+        usuarioModel.atualizarPerfil(idUsuario, nome, email, senha, fotoDePerfil)
+            .then(function (resultado) {
+                res.json({ mensagem: "Perfil atualizado com sucesso!" });
+            })
+            .catch(function (erro) {
+                console.log(erro);
+                console.log("\nHouve um erro ao atualizar o perfil! Erro:", erro.sqlMessage);
+                res.status(500).json(erro.sqlMessage); }); }
+}
+
+module.exports = { autenticar, cadastrar, atualizarPerfil }

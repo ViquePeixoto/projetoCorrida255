@@ -1,15 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro</title>
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
 <body class="corpoPrincipal">
+
     <section id="secaoSideBar" class="sideBar container">
+
         <a href="./visitanteTorneio.html">
             <i class="fas fa-flag-checkered" title="Torneios"></i>
         </a>
@@ -21,22 +23,24 @@
         <a href="./usuarioLogin.html">
             <i class="fas fa-warehouse" title="Login"></i>
         </a>
+
     </section>
 
     <main class="secaoPrincipal margemCadastro">
+
         <section class="secaoFormulario margemCadastro">
 
             <p>NOME DE USUÁRIO</p>
-            <input oninput="validarNome()" type="text" id="inputNome" placeholder="Insira o seu nome."
-                class="inputsValidacao">
+            <input id="inputNome" class="inputsValidacao" type="text" placeholder="Insira o seu nome."
+                oninput="validarNome()">
 
             <p>E-MAIL</p>
-            <input oninput="validarEmail()" type="email" id="inputEmail" placeholder="Insira o seu e-mail."
-                class="inputsValidacao">
+            <input id="inputEmail" class="inputsValidacao" type="email" placeholder="Insira o seu e-mail."
+                oninput="validarEmail()">
 
             <p>SENHA</p>
-            <input oninput="validarSenha()" type="password" id="inputSenha" placeholder="Insira a sua senha."
-                class="inputsValidacao">
+            <input id="inputSenha" class="inputsValidacao" type="password" placeholder="Insira a sua senha."
+                oninput="validarSenha()">
 
             <a href="./usuarioLogin.html">Já tenho uma conta.</a>
             <button class="botaoValidacao" onclick="verificarCriacaoDeConta()">Criar conta</button>
@@ -44,126 +48,105 @@
         </section>
 
         <div id="divVerificacaoDeConta" class="mensagemValidacao"></div>
+
     </main>
 
     <div class="barraRolante">
+
         <span id="spanFlavorText"></span>
+
     </div>
 
 </body>
 
 </html>
 
-<!-- JavaScript para as validações de cadastro. -->
-<script>
-var listaDeSimbolosEspeciais = [
-    '.', ',', '+', '-', '_', '(',
-    '!', '@', '>', '?', '/', ')',
-    '#', '$', ':', '|', '<', '%',
-    '^', '{', '}', ';', '&', '*',
-    '=', '[', ']'];
-
-function exibirMensagem(verificacaoMensagem) {
-    var divVerificacao = document.getElementById("divVerificacaoDeConta");
-    divVerificacao.innerHTML = verificacaoMensagem;
-
-    divVerificacao.classList.remove("mensagemValidacaoAtivo");
-    void divVerificacao.offsetWidth;
-    divVerificacao.classList.add("mensagemValidacaoAtivo");
-
-    setTimeout(function () {
-        divVerificacao.classList.remove("mensagemValidacaoAtivo");
-    }, 2000);
-}
-
-function validarNome() {
-    var nome = inputNome.value;
-
-    for (var i = 0; i < nome.length; i++) {
-        if (listaDeSimbolosEspeciais.includes(nome[i])) {
-            exibirMensagem("Permitimos de tudo, mas cuidado com os símbolos especiais.");
-            return false; }
-        } return true;
-}
-
-function validarEmail() {
-    var email = inputEmail.value;
-
-    if (!email.includes('@')) {
-        exibirMensagem("Seu e-mail não contém um @... Ainda.");
-        return false;
-    } return true;
-}
-
-function validarSenha() {
-    var senha = inputSenha.value;
-    var contemLetraMaiuscula = false;
-    var contemLetraMinuscula = false;
-    var contemNumero = false;
-    var contemSimbolosEspeciais = false;
-
-    for (var i = 0; i < senha.length; i++) {
-        var senhaAtual = senha[i];
-        
-        if (senhaAtual >= "A" && senhaAtual <= "Z") {
-            contemLetraMaiuscula = true;
-        }
-        else if (senhaAtual >= "a" && senhaAtual <= "z") {
-            contemLetraMinuscula = true;
-        }
-        else if (senhaAtual >= "0" && senhaAtual <= "9") {
-            contemNumero = true;
-        }
-        else if (listaDeSimbolosEspeciais.includes(senhaAtual)) {
-            contemSimbolosEspeciais = true; }
-        
-        if (!(contemLetraMaiuscula && contemLetraMinuscula && contemNumero && contemSimbolosEspeciais)) {
-            exibirMensagem("Para sua segurança, use letras maiúsculas, minúsculas, números e símbolos.");
-            return false;
-        } return true;
-    }
-}
-
-    function verificarCriacaoDeConta() {
-    var nomeVar = inputNome.value.trim();
-    var emailVar = inputEmail.value.trim();
-    var senhaVar = inputSenha.value.trim();
-
-    if (nomeVar == "" || emailVar == "" || senhaVar == "") {
-        exibirMensagem("Sem campos vazios!");
-        return false;
-    }
-    if (!validarNome() || !validarEmail() || !validarSenha()) {
-        return false; }
-
-    fetch("/usuarios/cadastrar", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-            nomeServer: nomeVar,
-            emailServer: emailVar,
-            senhaServer: senhaVar }),
-    })
-    .then(function (resposta) {
-        if (resposta.ok) {
-            exibirMensagem("Cadastro feito, agora é só fazer login...");
-            setTimeout(() => {
-                window.location = "./usuarioLogin.html"; }, 2000);
-        } else {
-            resposta.text().then(texto => {
-                exibirMensagem("Erro ao cadastrar: " + texto);
-                console.error("Erro de resposta:", texto); }); }
-    })
-    .catch(function (erro) {
-        exibirMensagem("Erro inesperado. Tente novamente mais tarde.");
-        console.error("Erro no fetch:", erro);
-    });
-    return false;
-}
-</script>
-
-<!-- JavaScript para a barra rolante. -->
+<!-- Barra rolante. -->
 <script src="../script/barra_rolante.js"></script>
 
+<!-- Cadastro. -->
+<script>
+
+    var listaDeSimbolosEspeciais = ['.', ',', '+', '-', '_', '(', '!', '@', '>', '?', '/', ')', '#', '$', ':', '|', '<', '%', '^', '{', '}', ';', '&', '*', '=', '[', ']'];
+
+    function exibirMensagem(msg) {
+        var div = document.getElementById("divVerificacaoDeConta");
+        div.innerHTML = msg;
+        div.classList.remove("mensagemValidacaoAtivo");
+        void div.offsetWidth; // reflow para resetar animação
+        div.classList.add("mensagemValidacaoAtivo");
+        setTimeout(() => div.classList.remove("mensagemValidacaoAtivo"), 2000);
+    }
+
+    function validarNome() {
+        var nome = inputNome.value;
+        for (let i = 0; i < nome.length; i++) {
+            if (listaDeSimbolosEspeciais.includes(nome[i])) {
+                exibirMensagem("Permitimos de tudo, mas cuidado com os símbolos especiais.");
+                return false;
+            }
+        }
+        return true;
+    }
+
+    function validarEmail() {
+        var email = inputEmail.value;
+        if (!email.includes('@')) {
+            exibirMensagem("Seu e-mail não contém um @... Ainda.");
+            return false;
+        }
+        return true;
+    }
+
+    function validarSenha() {
+        var senha = inputSenha.value;
+        let temMaiuscula = false, temMinuscula = false, temNumero = false, temSimbolo = false;
+
+        for (let i = 0; i < senha.length; i++) {
+            var c = senha[i];
+            if (c >= 'A' && c <= 'Z') temMaiuscula = true;
+            else if (c >= 'a' && c <= 'z') temMinuscula = true;
+            else if (c >= '0' && c <= '9') temNumero = true;
+            else if (listaDeSimbolosEspeciais.includes(c)) temSimbolo = true;
+        }
+
+        if (!(temMaiuscula && temMinuscula && temNumero && temSimbolo)) {
+            exibirMensagem("Para sua segurança, use letras maiúsculas, minúsculas, números e símbolos.");
+            return false;
+        }
+        return true;
+    }
+
+    function verificarCriacaoDeConta() {
+        var nome = inputNome.value.trim();
+        var email = inputEmail.value.trim();
+        var senha = inputSenha.value.trim();
+
+        if (!nome || !email || !senha) {
+            exibirMensagem("Sem campos vazios!");
+            return false;
+        }
+
+        if (!validarNome() || !validarEmail() || !validarSenha()) return false;
+
+        fetch("/usuarios/cadastrar", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ nomeServer: nome, emailServer: email, senhaServer: senha })
+        })
+            .then(res => {
+                if (res.ok) {
+                    exibirMensagem("Cadastro feito, agora é só fazer login...");
+                    setTimeout(() => window.location = "./usuarioLogin.html", 2000);
+                } else {
+                    res.text().then(t => exibirMensagem("Erro ao cadastrar: " + t));
+                }
+            })
+            .catch(err => {
+                console.error("Erro no fetch:", err);
+                exibirMensagem("Erro inesperado. Tente novamente mais tarde.");
+            });
+
+        return false;
+    }
+</script>

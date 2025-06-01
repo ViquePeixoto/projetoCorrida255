@@ -1,15 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login</title>
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="/css/style.css" />
 </head>
 
 <body class="corpoPrincipal">
+
     <section id="secaoSideBar" class="sideBar container">
+
         <a href="./visitanteTorneio.html">
             <i class="fas fa-flag-checkered" title="Torneios"></i>
         </a>
@@ -21,16 +23,18 @@
         <a href="./usuarioLogin.html">
             <i class="fas fa-warehouse" title="Login"></i>
         </a>
+
     </section>
 
-    <main class="secaoPrincipal margemLogin Posicao">
+    <main class="secaoPrincipal margemLogin">
 
         <section class="secaoFormulario margemLogin">
+
             <p>NOME DE USUÁRIO</p>
-            <input type="text" id="inputNome" placeholder="Insira o seu nome." class="inputsValidacao">
+            <input type="text" id="inputNome" class="inputsValidacao" placeholder="Insira o seu nome.">
 
             <p>SENHA</p>
-            <input type="password" id="inputSenha" placeholder="Insira a sua senha." class="inputsValidacao">
+            <input type="password" id="inputSenha" class="inputsValidacao" placeholder="Insira a sua senha.">
 
             <a href="./usuarioCadastro.html">Ainda não fiz uma conta.</a>
             <button class="botaoValidacao" onclick="verificarConta()">Entrar</button>
@@ -42,97 +46,104 @@
     </main>
 
     <div class="barraRolante">
+
         <span id="spanFlavorText"></span>
+
     </div>
 
 </body>
 
 </html>
 
-<!-- JavaScript para a validação de login. -->
+<!-- Barra rolante. -->
+<script src="../script/barra_rolante.js"></script>
+
+<!-- Login. -->
 <script>
-var listaDeSimbolosEspeciais = [
-'.', ',', '+', '-', '_', '(',
-'!', '@', '>', '?', '/', ')',
-'#', '$', ':', '|', '<', '%',
-'^', '{', '}', ';', '&', '*',
-'=', '[', ']'];
-    
-function exibirMensagemLogin(texto) {
-    var divConfirmacao = document.getElementById("divConfirmacaoLogin");
-    divConfirmacao.innerHTML = texto;
 
-    divConfirmacao.classList.remove("mensagemValidacaoAtivo");
-    void divConfirmacao.offsetWidth;
-    divConfirmacao.classList.add("mensagemValidacaoAtivo");
+    var listaDeSimbolosEspeciais = [
+        '.', ',', '+', '-', '_', '(', '!', '@', '>', '?', '/', ')',
+        '#', '$', ':', '|', '<', '%', '^', '{', '}', ';', '&', '*', '=', '[', ']'
+    ];
 
-    setTimeout(function () {
-        divConfirmacao.classList.remove("mensagemValidacaoAtivo");
-    }, 3000);
-}
+    function exibirMensagemLogin(mensagem) {
+        var div = document.getElementById("divConfirmacaoLogin");
+        div.innerHTML = mensagem;
 
-function validarNomeLogin(nome) {
-    for (var i = 0; i < nome.length; i++) {
-        if (listaDeSimbolosEspeciais.includes(nome[i])) {
-            exibirMensagemLogin("Cuidado com símbolos especiais no nome.");
-            return false; }
-        } return true;
-}
+        div.classList.remove("mensagemValidacaoAtivo");
+        void div.offsetWidth;
+        div.classList.add("mensagemValidacaoAtivo");
 
-function validarSenhaLogin(senha) {
-    if (!senha || senha.length < 6) {
-        exibirMensagemLogin("Senha inválida ou muito curta.");
-        return false;
-    } return true;
-}
+        setTimeout(() => {
+            div.classList.remove("mensagemValidacaoAtivo");
+        }, 3000);
+    }
 
-function verificarConta() {
-    var nomeVar = document.getElementById("inputNome").value.trim();
-    var senhaVar = document.getElementById("inputSenha").value.trim();
+    function validarNomeLogin(nome) {
+        for (let i = 0; i < nome.length; i++) {
+            if (listaDeSimbolosEspeciais.includes(nome[i])) {
+                exibirMensagemLogin("Cuidado com símbolos especiais no nome.");
+                return false;
+            }
+        }
+        return true;
+    }
 
-    if (!nomeVar || !senhaVar) {
-        exibirMensagemLogin("Preencha nome e senha para entrar.");
+    function validarSenhaLogin(senha) {
+        if (!senha || senha.length < 6) {
+            exibirMensagemLogin("Senha inválida ou muito curta.");
+            return false;
+        }
+        return true;
+    }
+
+    function verificarConta() {
+        var nomeVar = document.getElementById("inputNome").value.trim();
+        var senhaVar = document.getElementById("inputSenha").value.trim();
+
+        if (!nomeVar || !senhaVar) {
+            exibirMensagemLogin("Preencha nome e senha para entrar.");
+            return false;
+        }
+
+        if (!validarNomeLogin(nomeVar) || !validarSenhaLogin(senhaVar)) {
+            return false;
+        }
+
+        fetch("/usuarios/autenticar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                nomeServer: nomeVar,
+                senhaServer: senhaVar,
+            }),
+        })
+            .then((resposta) => {
+                if (resposta.ok) {
+                    return resposta.json();
+                } else if (resposta.status === 403) {
+                    throw "Esse login não existe!";
+                } else {
+                    throw "Encontramos um erro no cadastro. Tente mais tarde.";
+                }
+            })
+            .then((dados) => {
+                sessionStorage.setItem("idUsuario", dados.id);
+                sessionStorage.setItem("nomeUsuario", dados.nome);
+                sessionStorage.setItem("emailUsuario", dados.email);
+
+                exibirMensagemLogin("Login realizado com sucesso! Redirecionando...");
+                setTimeout(() => {
+                    window.location.href = "../usuarioGaragem.html";
+                }, 2000);
+            })
+            .catch((erro) => {
+                console.error("Erro no login:", erro);
+                exibirMensagemLogin(erro);
+            });
+
         return false;
     }
-    if (!validarNomeLogin(nomeVar) || !validarSenhaLogin(senhaVar)) {
-        return false; }
-        
-fetch("/usuarios/autenticar", {
-    method: "POST",
-    headers: {
-        "Content-Type": "application/json"
-    },
-    body: JSON.stringify({
-        nomeServer: nomeVar,
-        senhaServer: senhaVar })
-    })
-    .then(resposta => {
-        if (resposta.ok) {
-            return resposta.json();
-        }
-        else if (resposta.status == 403) {
-            throw "Esse login não existe!";
-        }
-        else {
-            throw "Encontramos um erro no cadastro. Tente mais tarde."; }
-    })
-    .then(dados => {
-        sessionStorage.setItem("idUsuario", dados.id);
-        sessionStorage.setItem("nomeUsuario", dados.nome);
-        sessionStorage.setItem("emailUsuario", dados.email);
-            
-        exibirMensagemLogin("Login realizado com sucesso! Redirecionando...");
-        setTimeout(() => {
-            window.location.href = "../usuarioGaragem.html"; }, 2000);
-    })
-    .catch(erro => {
-        console.error("Erro no login:", erro);
-            
-        exibirMensagemLogin(erro);
-    });
-    return false;
-}
 </script>
-
-<!-- JavaScript para a barra rolante. -->
-<script src="../script/barra_rolante.js"></script>

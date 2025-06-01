@@ -1,151 +1,132 @@
-/* Fonte 'Lexend' do Google Fonts. */
+/* Fontes e bibliotecas */
 @import url('https://fonts.googleapis.com/css2?family=Lexend&display=swap');
-
-/* Biblioteca 'Font Awesome' */
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css');
 
-/* Variáveis universais para o site. */
 :root {
-    --corDeFundoPadrao: #000000;
-    --corDeTextoPadrao: #ffffff;
-    --corDecoracao1: #ac0a40;
+  --corDeFundoPadrao: #000000;
+  --corDeTextoPadrao: #ffffff;
+  --corDecoracao1: #ac0a40;
+  --corDecoracao2: #005fa3;
 
-    scrollbar-width: none;
+  scrollbar-width: none;
 }
 
 
 
-
-/* Configurações gerais. */
+/* Aparência geral */
 body {
-    background-image: url(../css/imagensBG/homeBG.png);
-    background-size: initial;
-    background-position: top;
-    background-color: var(--corDecoracao1);
-    color: var(--corDeTextoPadrao);
-    font-family: 'Lexend', sans-serif;
+  background-image: url(../css/imagensBG/homeBG.png);
+  background-size: initial;
+  background-position: top;
+  background-color: var(--corDecoracao1);
+  color: var(--corDeTextoPadrao);
+  font-family: 'Lexend', sans-serif;
 
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
 
-    display: flex;
+  display: flex;
 }
-
-button {
-    color: var(--corDeTextoPadrao);
-    font-family: 'Lexend', sans-serif;
-}
-
-input {
-    color: var(--corDeTextoPadrao);
-    font-family: 'Lexend', sans-serif;
+button, input {
+  color: var(--corDeTextoPadrao);
+  font-family: 'Lexend', sans-serif;
 }
 
 
 
-
-/* Configurações para a sidebar. */
+/* Sidebar */
 .sideBar {
-    background-color: var(--corDecoracao1);
-    box-shadow: 0 0 10px var(--corDeFundoPadrao);
+  background-color: var(--corDecoracao1);
+  box-shadow: 0 0 10px var(--corDeFundoPadrao);
 
-    width: 150px;
-    height: 100vh;
-    margin: 10px;
-    padding-top: 0;
+  width: 150px;
+  height: 100vh;
+  margin: 10px;
+  padding-top: 0;
 
-    position: fixed;
-    top: 0;
-    left: 0;
+  position: fixed;
+  top: 0;
+  left: 0;
 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  overflow: hidden;
 
-    border-radius: 15px 15px 0 0;
+  border-radius: 15px 15px 0 0;
 }
-
 .sideBar::before {
-    background: url('../css/imagensOverlay/sidebarOverlay.png') no-repeat center top;
-    background-size: contain;
-    content: '';
+  background: url('../css/imagensOverlay/sidebarOverlay.png') no-repeat center top;
+  background-size: contain;
+  content: '';
 
-    width: 100%;
-    height: 200%;
+  width: 100%;
+  height: 200%;
 
-    position: absolute;
+  position: absolute;
 
-    transform: translateY(0);
-    transition: transform 0.1s linear;
+  transform: translateY(0);
+  transition: transform 0.1s linear;
 }
-
 .sideBar a {
-    color: var(--corDeTextoPadrao);
-    font-size: 25px;
+  color: var(--corDeTextoPadrao);
+  font-size: 25px;
 
-    margin: 55px;
+  margin: 55px;
 
-    transform: scale(1);
-    transition: transform 0.3s ease;
+  transform: scale(1);
+  transition: transform 0.3s ease;
 }
-
 .sideBar a:hover {
-    transform: scale(1.8);
+  transform: scale(1.8);
 }
 
 
 
-
-/* Configurações para a barra rolante com flavor text. */
+/* Barra rolante */
 .barraRolante {
-    background-color: var(--corDeFundoPadrao);
-    box-shadow: 0 0 10px var(--corDeFundoPadrao);
+  background-color: var(--corDeFundoPadrao);
+  box-shadow: 0 0 10px var(--corDeFundoPadrao);
 
-    width: 100vw;
-    height: 50px;
+  width: 100vw;
+  height: 50px;
+  padding: 0 20px;
 
-    bottom: 30px;
+  position: fixed;
+  bottom: 30px;
 
-    position: fixed;
-    display: flex;
-    align-items: center;
-    overflow: hidden;
-    padding: 0 20px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
 }
 
 .barraRolante span {
-    color: var(--corDeTextoPadrao);
-    font-size: 35px;
-    font-weight: 600;
-    cursor: default;
+  color: var(--corDeTextoPadrao);
+  font-size: 35px;
+  font-weight: 600;
+  cursor: default;
 
-    display: inline-block;
-    white-space: nowrap;
-    padding-left: 100%;
+  display: inline-block;
+  white-space: nowrap;
+  padding-left: 100%;
 
-    animation: spanFlavorTextRoll 6s linear infinite;
+  animation: spanFlavorTextRoll 6s linear infinite;
 }
 
 #spanFlavorText {
-    transition: opacity 0.3s ease-in-out;
+  transition: opacity 0.3s ease-in-out;
 }
 
 @keyframes spanFlavorTextRoll {
-    0% {
-        transform: translateX(0);
-    }
-
-    100% {
-        transform: translateX(-100%);
-    }
+  0% { transform: translateX(0);
+  }
+  100% { transform: translateX(-100%); }
 }
 
 
 
-
-/* Configurações para o slideshow de introdução ao site. */
+/* Slideshow de contexto na página "Home" */
 #secaoContexto {
     height: 90vh;
     margin-left: 80vh;
@@ -154,7 +135,6 @@ input {
     align-items: center;
     padding: 30px;
 }
-
 .slideshowCaixa {
     background: var(--corDeFundoPadrao);
     box-shadow: 0 0 10px var(--corDeFundoPadrao);
@@ -169,7 +149,6 @@ input {
 
     border-radius: 20px;
 }
-
 .slideshowTexto {
     color: inherit;
     font-size: 20px;
@@ -184,12 +163,10 @@ input {
     transform: translateX(30px);
     transition: opacity 0.3s ease, transform 0.3s ease;
 }
-
 .slideshowTexto.ativo {
     opacity: 1;
     transform: translateX(0);
 }
-
 .slideshowBotao {
     color: var(--corDeTextoPadrao);
     font-size: 30px;
@@ -202,16 +179,13 @@ input {
 
     transition: transform 0.2s ease;
 }
-
 .slideshowBotao:hover {
     transform: scale(1.5);
 }
-
 .slideshowBotao.esquerda {
     position: absolute;
     left: -30px;
 }
-
 .slideshowBotao.direita {
     position: absolute;
     right: -30px;
@@ -219,23 +193,19 @@ input {
 
 
 
-
-/* Configurações para o formulário de cadastro e login. */
+/* Criação e autenticação de conta nas páginas "Cadastro" e "Login" */
 .secaoPrincipal {
     display: flex;
     align-items: flex-end;
     justify-content: center;
     position: absolute;
 }
-
 .secaoPrincipal.margemCadastro {
     margin-left: 65vh;
 }
-
 .secaoPrincipal.margemLogin {
     margin-left: 65vh;
 }
-
 .secaoFormulario {
     width: auto;
     height: 70vh;
@@ -250,15 +220,12 @@ input {
 
     position: relative;
 }
-
 .secaoFormulario.margemCadastro {
     margin-top: 30px;
 }
-
 .secaoFormulario.margemLogin {
     margin-top: 20px;
 }
-
 .secaoFormulario p {
     color: inherit;
     font-size: 20px;
@@ -271,13 +238,11 @@ input {
     justify-content: center;
     cursor: default;
 }
-
 .secaoFormulario a {
     color: var(--corDeTextoPadrao);
     text-decoration: none;
     margin-top: 10px;
 }
-
 .inputsValidacao {
     background-color: var(--corDeTextoPadrao);
     color: var(--corDecoracao1);
@@ -294,7 +259,6 @@ input {
     transition: border-color 0.3s ease;
     align-items: center;
 }
-
 .botaoValidacao {
     background-color: var(--corDeFundoPadrao);
     color: var(--corDeTextoPadrao);
@@ -311,7 +275,6 @@ input {
     align-self: center;
     cursor: pointer;
 }
-
 .mensagemValidacao {
     background-color: var(--corDeFundoPadrao);
     color: var(--corDeTextoPadrao);
@@ -330,8 +293,210 @@ input {
     transform: translateY(20px);
     transition: opacity 0.3s ease, transform 0.3s ease;
 }
-
 .mensagemValidacaoAtivo {
     opacity: 1;
     transform: translateY(0);
+}
+
+
+
+/* Aparência do ranking na página "Corredores" */
+#caixaRanking {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    margin-left: 350px;
+    padding: 40px;
+}
+.caixaRanking {
+    background-color: black;
+    color: var(--corDeTextoPadrao);
+    border-radius: 20px;
+    padding: 30px;
+    font-family: 'Lexend', sans-serif;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.cabecalho {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+.spanNomeDoCorredor {
+    font-size: 24px;
+    font-weight: bold;
+}
+.spanBioDoCorredor {
+    padding: 10px 20px;
+    border-radius: 20px;
+    font-size: 14px;
+}
+.caixaCorpo {
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+    align-items: flex-start;
+    flex-wrap: nowrap;
+}
+.caixaGrafico {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    flex-wrap: nowrap;
+}
+.caixaGrafico canvas {
+    width: 250px !important;
+    height: 250px !important;
+    border-radius: 20px;
+    padding: 10px;
+}
+.renderDoPerfil {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 20px;
+    box-shadow: 0 0 10px white;
+}
+
+
+
+/* Customização de perfil na página "Garagem" */
+#formularioPerfil {
+  width: 70vh;
+  margin: 40px auto;
+  padding: 30px;
+
+  background-color: var(--corDecoracao1);
+  border-radius: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+
+  color: var(--corDeTextoPadrao);
+  font-family: 'Lexend', sans-serif;
+
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.cabecalhoPerfil {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 20px;
+}
+.infoUsuario {
+  flex-grow: 1;
+  padding-right: 20px;
+}
+#nomeUsuario {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+#bioUsuario {
+  font-size: 1.1rem;
+  color: var(--corDeTextoPadrao);
+}
+.renderFotoDePerfil {
+  width: 140px;
+  height: 140px;
+  border-radius: 20px;
+  object-fit: cover;
+
+  border: 3px solid var(--corDecoracao1, #0077cc);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.renderFotoDePerfil:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
+}
+#formularioPerfil span {
+  display: block;
+  margin-top: 8px;
+  margin-bottom: 4px;
+
+  font-weight: 600;
+  font-size: 1rem;
+}
+#formularioPerfil input[type="text"],
+#formularioPerfil input[type="email"],
+#formularioPerfil input[type="password"],
+#formularioPerfil input[type="url"] {
+  width: 100%;
+  padding: 12px 15px;
+
+  border: 2px solid var(--corDecoracao1);
+  border-radius: 8px;
+
+  font-size: 1rem;
+  box-sizing: border-box;
+
+  transition: border-color 0.3s ease;
+}
+#formularioPerfil input:focus {
+  outline: none;
+  border-color: #afff2e;
+}
+#inputFotoPerfil::placeholder {
+  font-style: italic;
+  color: #888;
+  font-size: 11px;
+}
+#formularioPerfil button[type="submit"] {
+  margin-top: 10px;
+  width: 100%;
+  padding: 15px;
+
+  background-color: var(--corDecoracao1);
+  color: white;
+
+  border: none;
+  border-radius: 8px;
+
+  font-size: 1.1rem;
+  font-weight: 700;
+
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+#formularioPerfil button[type="submit"]:hover {
+  background-color: var(--corDecoracao2, #005fa3);
+}
+.inputEdicao {
+  width: 100%;
+  padding: 8px;
+
+  font-size: 1rem;
+  font-family: 'Lexend', sans-serif;
+
+  border: 2px solid var(--corDecoracao1);
+  border-radius: 6px;
+  margin-top: 5px;
+
+  resize: none;
+}
+#botaoEditar {
+  margin-top: 10px;
+  padding: 6px 12px;
+
+  background-color: transparent;
+  color: var(--corDeTextoPadrao);
+
+  border: 1px solid var(--corDeTextoPadrao);
+  border-radius: 6px;
+
+  font-size: 0.9rem;
+  cursor: pointer;
+
+  transition: all 0.3s ease;
+}
+#botaoEditar:hover {
+  background-color: var(--corDeTextoPadrao);
+  color: var(--corDecoracao1);
 }
